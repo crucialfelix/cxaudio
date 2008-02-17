@@ -9,15 +9,15 @@ Instr([\minimoog,\minimoog],{ arg freq=440,int1=5,int2 = -5,width1=0.1,width2=0.
 			
 	RLPF.ar(Mix.ar(p),freq * ffreqInterval.midiratio,rq)
 			
-},#[
+},[
 	nil,
-	[-48,48,\linear,1],
-	[-48,48,\linear,1]
+	ControlSpec(-48,48,\linear,1,0),
+	ControlSpec(-48,48,\linear,1,0)
 
 	,nil,nil,nil,
-	[-48,48,\linear,1]
+	ControlSpec(-48,48,\linear,1,0)
 
-]);
+],\audio);
 
 
 Instr([\minimoog,\loose],{ arg freq=440,int1=5,int2 = -5,
@@ -31,13 +31,13 @@ Instr([\minimoog,\loose],{ arg freq=440,int1=5,int2 = -5,
 			
 	RLPF.ar(Mix.ar(p),freq * ffreqInterval.midiratio,rq)
 			
-},#[
+},[
 	nil,
-	[-48,48,\linear,1],
-	[-48,48,\linear,1],
-	[-48,48,\linear,1]
+	ControlSpec(-48,48,\linear,1,0),
+	ControlSpec(-48,48,\linear,1,0),
+	ControlSpec(-48,48,\linear,1,0)
 
-]);
+],\audio);
 
 // has one long ffreq env
 // what's the point of that one ?
@@ -57,14 +57,14 @@ Instr([\minimoog,\detune],{ arg freq=440,detune = -4,ffreqInterval=0,rq=0.4,freq
 		EnvGen.kr(env,1,freq * ffreqInterval.midiratio,0.0,freqEnvSpeed)
 		,rq)
 			
-},#[
+},[
 	nil,
 	[-20,20],
-	[-48,48,\linear,1],
+	ControlSpec(-48,48,\linear,1,0),
 	\rq,
 	[0.01,100]
 
-]);
+],\audio);
 //.test
 
 

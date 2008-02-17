@@ -101,50 +101,50 @@ Instr("mastering.midTrans2HighMedian",{ arg audio=0.0,xover1=400,xover2=8000, se
   ( not transient driven )
 **/
 
-Instr("mastering.mid2HighMedian",{ arg audio=0.0,xover1=900,xover2=7139, slewv = 1.0,
-					logain=1.4,midgain=1.0,higain=1.0,
-					attack=0.01,release=0.1,stereo=2.0,
-					midthresh=0.4,midslope=0.3;
-
-	var lo,mid,hi;
-	
-	# lo, mid, hi = Instr.ar([\splits,\xover3,\lp],[audio,xover1,xover2]);
-	
-	lo = Instr.ar([\dynamics,\shaper],[lo]);
-	lo = (lo * logain).softclip;
-	
-	mid = Median.ar(3,mid);
-	mid = Instr.ar([\stereo,\bal2CompSides],[mid,1.0,1.3,0.3,0.3]);
-	//mid = Instr.ar([\dynamics,\shaper],[mid]);
-	mid = Compander.ar(mid,mid.max(0.0001),midthresh,1,midslope,0.01,0.2);
-	
-	hi = Median.ar(3,hi);
-	hi = Instr.ar([\stereo,\verbSides],[hi,1.0,stereo,0.05]);
-	// squash
-	hi = Compander.ar(hi,hi.max(0.0001),0.4,1,0.4,0.01,0.2);
-	//hi = Mix.ar([ PitchShift.ar( hi,0.02,2,0.3),hi]);
-	// and drive off mid 5k
-	//hi =	Instr.ar([\dyna,\audioByKey],[hi,HPF.ar(mid,1000),sensitivity,attack,release]);
-	hi = Instr.ar([\slews,\balance],[ hi,300,slewv,1.0]);
-	
-	Limiter.ar(
-		 Mix.ar([ lo , mid * midgain,hi * higain ])
-	)
-	
-},#[
-	\audio,
-	\freq,
-	\freq,
-	[0.0,15.0],
-	[0.0,4.0],
-	[0.0,2.0],
-	[0.0,4.0],
-	\attack,
-	\release,
-	\drive
-],
-	\audioEffect
-);
+//Instr("mastering.mid2HighMedian",{ arg audio=0.0,xover1=900,xover2=7139, slewv = 1.0,
+//					logain=1.4,midgain=1.0,higain=1.0,
+//					attack=0.01,release=0.1,stereo=2.0,
+//					midthresh=0.4,midslope=0.3;
+//
+//	var lo,mid,hi;
+//	
+//	# lo, mid, hi = Instr.ar([\splits,\xover3,\lp],[audio,xover1,xover2]);
+//	
+//	lo = Instr.ar([\dynamics,\shaper],[lo]);
+//	lo = (lo * logain).softclip;
+//	
+//	mid = Median.ar(3,mid);
+//	mid = Instr.ar([\stereo,\bal2CompSides],[mid,1.0,1.3,0.3,0.3]);
+//	//mid = Instr.ar([\dynamics,\shaper],[mid]);
+//	mid = Compander.ar(mid,mid.max(0.0001),midthresh,1,midslope,0.01,0.2);
+//	
+//	hi = Median.ar(3,hi);
+//	hi = Instr.ar([\stereo,\verbSides],[hi,1.0,stereo,0.05]);
+//	// squash
+//	hi = Compander.ar(hi,hi.max(0.0001),0.4,1,0.4,0.01,0.2);
+//	//hi = Mix.ar([ PitchShift.ar( hi,0.02,2,0.3),hi]);
+//	// and drive off mid 5k
+//	//hi =	Instr.ar([\dyna,\audioByKey],[hi,HPF.ar(mid,1000),sensitivity,attack,release]);
+//	hi = Instr.ar([\slews,\balance],[ hi,300,slewv,1.0]);
+//	
+//	Limiter.ar(
+//		 Mix.ar([ lo , mid * midgain,hi * higain ])
+//	)
+//	
+//},#[
+//	\audio,
+//	\freq,
+//	\freq,
+//	[0.0,15.0],
+//	[0.0,4.0],
+//	[0.0,2.0],
+//	[0.0,4.0],
+//	\attack,
+//	\release,
+//	\drive
+//],
+//	\audioEffect
+//);
 
 
 Instr("mastering.medianFinalizer",{ arg audio=0.0,xover1=900,xover2=7139, slewv = 1.0,

@@ -70,7 +70,7 @@ Instr("pvfft.PV_MagClip", { arg audio,threshold=1.0,gain=1.5,fftbuff;
 },[
 	\audio,
 	[0.0,10.0]
-]);
+],\audioEffect);
 
 
 Instr("pvfft.PV_MagSmear", { arg audio,threshold=1.0,gain=1.5,fftbuff;
@@ -135,9 +135,9 @@ Instr("pvfft.PV_MagNoise", { arg audio,fftbuff;
 	chain = FFT(fftbuff.bufnumIr, audio);
 	chain = PV_MagNoise(chain); 
 	IFFT(chain);
-},[
-	\audio
-]);
+},nil,
+	\audioEffect
+);
 
 
 
@@ -404,7 +404,7 @@ Instr("pvfft.PV_MagFreeze", { arg audio,freeze=0.0,fftbuffl,fftbuffr;
 	\unipolar,
 	\fftbuff,
 	\fftbuff
-]);
+],\audioEffect);
 
 
 /* ??

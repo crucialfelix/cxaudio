@@ -3,7 +3,7 @@
 // remove some
 Instr("bassEfx.brf",{  arg audio=0.0,ffreq=200,rq8=0.8;
 	BRF.ar(audio ,ffreq,rq8 )
-});
+},nil,\audioEffect);
 
 
 
@@ -18,7 +18,7 @@ Instr("bassEfx.slewd2",{  arg audio=0.0,slewRise=300,slewFall;
 	[50,3000],
 	[50,3000]
 	
-]);
+],\audioEffect);
 
 
 // simpler awesome

@@ -34,7 +34,7 @@ Instr("combos2.dustedDelayed",{
 			NumChannels.ar(input1, buffer.numChannels),
 			 0.375,feedback,0.03,tempo: tempo
 		),
-		PingPongT.ar(buffer2.bufnum,
+		PingPongT.ar(buffer2.bufnumIr,
 			NumChannels.ar(input2, buffer2.numChannels),
 			0.25,feedback,0.03, tempo: tempo
 		)

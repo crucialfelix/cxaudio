@@ -11,13 +11,13 @@ Instr([\trails,\pelog],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 	scale = FloatArray[0, 1, 3, 7, 8];
 	
 	PitchShift.ar( audio, 0.1,
-		DegreeToKey.kr(scale,degree.round(1.0)).midiratio,
+		DegreeToKey.kr(scale.asBufnum,degree.round(1.0)).midiratio,
 		pchDispersion,0)
 
 },#[
 	\audio,
 	[-9,14,\linear,1]
-],\effect);
+],\audioEffect);
 
 Instr([\trails,\scriabin],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 
@@ -25,13 +25,13 @@ Instr([\trails,\scriabin],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 	scale = FloatArray[0, 1, 4, 7, 9];
 	
 	PitchShift.ar( audio, 0.1,
-		DegreeToKey.kr(scale,degree.round(1.0)).midiratio,
+		DegreeToKey.kr(scale.asBufnum,degree.round(1.0)).midiratio,
 		pchDispersion,0)
 
 },#[
 	\audio,
 	[-9,14,\linear,1]
-],\effect);
+],\audioEffect);
 
 
 Instr([\trails,\penta],{ arg audio=0.0,degree=1,pchDispersion=0.0;
@@ -40,7 +40,7 @@ Instr([\trails,\penta],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 	scale = FloatArray[0, 1, 5, 7, 11];
 	
 	PitchShift.ar( audio, 0.1,
-		DegreeToKey.kr(scale,degree.round(1.0)).midiratio,
+		DegreeToKey.kr(scale.asBufnum,degree.round(1.0)).midiratio,
 		pchDispersion,0)
 
 },#[
@@ -224,6 +224,8 @@ Instr([\trails,\rlpfPing],{ arg audio=0.0,ffreq=3000,rq=0.5,beats=0.375,feedback
 
 
 /*
+MISSING : MultiPitchShift
+
 Instr([\trails,\pitchCrunch],{ arg audio=0.0,pchRatio=1,drive=1,pchDispersion=0.0;
 
 	var scale,out;

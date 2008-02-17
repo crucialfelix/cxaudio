@@ -40,7 +40,7 @@ PeakingEQ {
 		var aovera, atimesa;
 
 		//a = dbgain.dbamp; // gain shouldnt go to 0.0 !
-		omega = 2pi * freq/Synth.sampleRate; // convert to radian frequency
+		omega = 2pi * freq/(Server.default.sampleRate ? Server.default.options.sampleRate ? 44000.0); // convert to radian frequency
 		sin = omega.sin;
 		cos = omega.cos;
 		alpha = sin * rq / 2;
@@ -84,7 +84,7 @@ Parametric {
 	
 		var gamma,b0,b1,b2,a1,a2,a0,a0n;
 		var omega;
-		omega = 2pi * freq/Synth.sampleRate;
+		omega = 2pi * freq/(Server.default.sampleRate ? Server.default.options.sampleRate ? 44000.0);
 		gamma = sqrt(amp*(f*f-1.0)/((amp*amp)-(f*f))) * tan(bW/2.0);
 
 
@@ -126,7 +126,7 @@ RbjLPF {
 		var b0,b1,b2,a1,a2,a0,a0n;
 		var omega,sin,cos,alpha;
 	
-		omega = 2pi * freq/Synth.sampleRate;
+		omega = 2pi * freq/(Server.default.sampleRate ? Server.default.options.sampleRate ? 44000.0);
 		sin   = sin(omega);
   	 	cos   = cos(omega);
 		alpha =   sin/ (2.0 * q );	
@@ -169,7 +169,7 @@ HiShelf {
 		var b0,b1,b2,a1,a2,a0,a0n;
 		var omega,sin,cos,beta;
 		
-		omega = 2pi * freq/Synth.sampleRate;
+		omega = 2pi * freq/(Server.default.sampleRate ? Server.default.options.sampleRate ? 44000.0);
 		sin   = sin(omega);
   	 	cos   = cos(omega);
 		beta = sqrt( (gain.squared + 1)/shelf - ((gain-1.0).squared));
@@ -200,7 +200,7 @@ HiShelf {
 //		var b0,b1,b2,a1,a2,a0,a0n;
 //		var omega,sin,cos,beta;
 //		
-//		omega = 2pi * freq/Synth.sampleRate;
+//		omega = 2pi * freq/(Server.default.sampleRate ? Server.default.options.sampleRate ? 44000.0);
 //		sin   = sin(omega);
 //  	 	cos   = cos(omega);
 //		beta = sqrt(gain) / q;

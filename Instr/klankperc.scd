@@ -16,7 +16,7 @@ Instr([\klankperc,\k2a],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0.0,stimeScale
 	[0,10000],
 	[0.01,100]
 
-]);
+],\audio);
 
 
 
@@ -39,7 +39,7 @@ Instr([\klankperc,\impulse,\thwick],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0.
 	[0.001,10000,\exponential],
 	[0.01,100]
 
-]);
+],\audio);
 
 
 
@@ -59,7 +59,7 @@ Instr([\klankperc,\impulse,\thum2],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0.0
 	[0,10000],
 	[0.01,100]
 
-]);
+],\audio);
 
 
 Instr([\klankperc,\impulse,\cring],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0.0,stimeScale=1.0,foldAt=0.1;
@@ -78,7 +78,7 @@ Instr([\klankperc,\impulse,\cring],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0.0
 	[0,10000],
 	[0.01,100]
 
-]);
+],\audio);
 
 
 //
@@ -120,7 +120,7 @@ Instr([\klankperc,\blip,\fold],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0.0,sti
 	[0.01,100],
 	[1.0,100.0]
 
-]);
+],\audio);
 
 
 
@@ -146,7 +146,7 @@ Instr([\klankperc,\blip,\flat],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0.0,sti
 	[0.01,100],
 	[1.0,100.0]
 
-]);
+],\audio);
 
 // do a pitch dive one
 
@@ -175,7 +175,7 @@ Instr([\klankperc,\blip,\dive,\flat],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0
 	[0.01,100],
 	[1.0,100.0]
 
-]);
+],\audio);
 
 
 Instr([\klankperc,\blip,\dive,\crunch],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0.0,stimeScale=1.0,
@@ -198,7 +198,7 @@ Instr([\klankperc,\blip,\dive,\crunch],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset
 	[0.01,100],
 	[1.0,100.0]
 
-]);
+],\audio);
 
 
 Instr([\klankperc,\blip,\dive,\crunch2],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffset=0.0,stimeScale=1.0,
@@ -223,7 +223,7 @@ Instr([\klankperc,\blip,\dive,\crunch2],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffs
 	\gain,
 	StaticSpec(0.001,1.0),
 	nil
-]);
+],\audio);
 
 
 
@@ -249,7 +249,7 @@ Instr([\klankperc,\blip,\dive,\crunch3],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffs
 	[0.01,100],
 	[1.0,100.0]
 
-]);
+],\audio);
 
 
 

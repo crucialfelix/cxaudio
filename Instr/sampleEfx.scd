@@ -61,7 +61,7 @@ Instr([\sampleEfx,\Warp1],{
 	\unipolar,
 	EnvSpec( Env.perc( 0.4, 0.6, 1.0,  \welch ) ),
 	\mul
-]);
+],\audio);
 
 
 
@@ -165,7 +165,7 @@ Instr([\sampleEfx,\Warp2],{ arg sample, pointer, pchRatio=1.0, windowSize=0.1,
 	\qnty, // static
 	\unipolar,
 	\mul
-]);
+],\audio);
 
 
 
@@ -225,7 +225,7 @@ Instr([\sampleEfx,\riddimWarp],{  arg sample, pointer, trig, pchRatio=1.0, wobbl
 	\pchRatio,
 	\wobble,
 	EnvSpec( Env.linen( 0.5, 0.0, 0.5, 1, \welch ) )
-]);
+],\audio);
 
 
 Instr([\sampleEfx,\riddimWarp2],{  arg sample, pointer, trig, pchRatio=1.0, wobble=0.1, windowEnv;
@@ -255,7 +255,7 @@ Instr([\sampleEfx,\riddimWarp2],{  arg sample, pointer, trig, pchRatio=1.0, wobb
 	\pchRatio,
 	\wobble,
 	EnvSpec( Env.linen( 0.5, 0.0, 0.5, 1, \welch ) )
-]);
+],\audio);
 
 
 

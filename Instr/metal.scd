@@ -9,7 +9,7 @@ Instr([\metal,\titewoody],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeSca
 	  6793, 3088, 8861, 2795, 14281, 11383, 16313, 16301, 4340, 4101 ], nil, [ 0.287593, 0.0334687, 0.11472, 0.0231302, 0.0367275, 0.0292539, 0.0267082, 0.0609702, 0.0164628, 0.0448704 ] ]) ];	
 	
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\straittinkin],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -22,7 +22,7 @@ Instr([\metal,\straittinkin],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,time
 			  0.264901, 0.0389789, 0.116455, 0.108077, 0.0425705, 0.0306453, 0.328715, 0.0230529, 0.0121518 ] ]) ]
 			;
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\triclamp],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -35,7 +35,7 @@ Instr([\metal,\triclamp],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScal
 			  0.015834, 0.0352862, 0.0400827 ] ]) ];
 			
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\caribmetal],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -49,7 +49,7 @@ Instr([\metal,\caribmetal],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeSc
 			  0.0576057, 0.198145 ] ]) ];
   
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\out],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -64,7 +64,7 @@ Instr([\metal,\out],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0
 
 
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\phex],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -77,7 +77,7 @@ Instr([\metal,\phex],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.
 			  0.542347, 0.22441, 0.511024, 0.398223, 0.251281, 0.236503, 0.482499 ] ]) ];
 
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\plumber],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -90,7 +90,7 @@ Instr([\metal,\plumber],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale
 		  0.470881, 0.439217, 0.446297, 0.668443, 0.599267, 0.512042, 0.335511 ] ]) ];
   
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\gank],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -103,7 +103,7 @@ Instr([\metal,\gank],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.
 		  0.222252, 0.480278, 0.552341 ] ]) ];
   
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\genki],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -120,7 +120,7 @@ Instr([\metal,\genki],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1
 		  0.022805 ] ]) ];
 
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\geyyynk],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -137,7 +137,7 @@ Instr([\metal,\geyyynk],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale
 		  0.0802132 ] ]) ];
 
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\metalwhip],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -155,7 +155,7 @@ Instr([\metal,\metalwhip],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeSca
 		  0.0231804 ] ]) ];
 
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\vidgame],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -173,7 +173,7 @@ Instr([\metal,\vidgame],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale
 		  0.0130251 ] ]) ];
 	
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 
 
@@ -190,7 +190,7 @@ Instr([\metal,\chink],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1
 
 
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\cowboy],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -204,7 +204,7 @@ Instr([\metal,\cowboy],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=
 		  0.0735961, 0.0207109, 0.385993, 0.04467 ] ]) ];
 
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 Instr([\metal,\lift],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.0;
 		var z;
@@ -218,7 +218,7 @@ Instr([\metal,\lift],{ arg trig,decay=0.04,noise=0.03,freqScale=1.0,timeScale=1.
 		  0.0897033, 0.0127842, 0.266187, 0.0142088 ] ]) ];
 		
 		Klank.ar(z, Decay.ar(Impulsar.ar(trig), decay, WhiteNoise.ar(noise)),freqScale,0.0,timeScale);
-});
+},nil,\audio);
 
 
 

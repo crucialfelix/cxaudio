@@ -8,7 +8,7 @@ Instr([\dyna,\transDriven],{ arg audio=0.0,sensitivity=0.01,attack=0.01,release=
 	// you can do strange audio-refresh effects
 	
 	Amplitude.kr(
-		Slope.kr(audio,sensitivity),
+		Slope.kr(A2K.kr(audio),sensitivity),
 		attack,
 		release)
 	
@@ -27,7 +27,7 @@ Instr([\dyna,\crossDriveTrans],{ arg audio=0.0,key=0.0,sensitivity=0.01,attack=0
 	// and spkie the amplitude of the treated channel
 	
 	Amplitude.kr(
-		Slope.kr(key,sensitivity),
+		Slope.kr(A2K.kr(key),sensitivity),
 		attack,
 		release)
 		

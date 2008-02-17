@@ -26,7 +26,7 @@ Instr([\percOrc4,	\tabla],{arg trig=0.0,  impulseToNoise=0.5,fingerToDrum=0.5,fr
 	nil,
 	[0,1],
 	\mix
-]);
+],\audio);
 
 
 Instr([\percOrc4,	\partchDiamond],{ arg trig=0.0,  qnty=4, decay=1,rq=0.4,ffreq=400;
@@ -44,7 +44,7 @@ Instr([\percOrc4,	\partchDiamond],{ arg trig=0.0,  qnty=4, decay=1,rq=0.4,ffreq=
 				5
 			);
 		});
-});
+},[],\audio);
 
 
 
@@ -70,7 +70,7 @@ Instr([\percOrc4,	\monoClav],{arg trig=0.0,qnty=3,freqOffset=3000,decay=6,myDetu
 
 },[
 	nil,nil,nil,nil,[StaticSpec(0.005,12)]
-]);
+],\audio);
 
 	
 // following are CC
@@ -84,7 +84,7 @@ Instr([\percOrc4,	\clong],{ arg trig=0.0, qnty=10,freqOffset=500;
 		}).softclip;
 },[
 	nil,nil,[StaticSpec(0,500)]
-]);
+],\audio);
 
 
 Instr([\percOrc4,	\clongkik],{ arg trig=0.0, qnty=10,freqOffset=500,freq=130,decay=0.2;
@@ -100,7 +100,7 @@ Instr([\percOrc4,	\clongkik],{ arg trig=0.0, qnty=10,freqOffset=500,freq=130,dec
 			
 },[
 	nil,nil,[StaticSpec(0,500)]
-]);
+],\audio);
 
 
 
@@ -126,7 +126,7 @@ Instr([\percOrc4,	\clongkik3],{ arg trig=0.0, qnty=10,freqOffset=500,freq=130,de
 					
 },[
 	nil,nil,[StaticSpec(0,500)]
-]);
+],\audio);
 
 	
 					
@@ -145,7 +145,7 @@ Instr([\percOrc4,	\klank808],{ // a Klank is more efficient, but no bwr tune
 				
 },[
 	nil,nil,[StaticSpec(0,300)]
-]);
+],\audio);
 
 					
 Instr([\percOrc4,	\klank808b],{ // a Klank is more efficient, but no bwr tune
@@ -168,7 +168,7 @@ Instr([\percOrc4,	\klank808b],{ // a Klank is more efficient, but no bwr tune
 				
 },[
 	nil,nil,[StaticSpec(0,300)]
-]);
+],\audio);
 
 
 
@@ -186,7 +186,7 @@ Instr([\percOrc4,	\shaker],{ arg trig=0.0,freqOffset=300,dur=0.3;
 	\trig,
 	[\freqOffset],
 	[StaticSpec(0.01,1.0)]
-]
+],\audio
 );
 
 

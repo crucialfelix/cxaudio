@@ -150,7 +150,7 @@ Instr([\percOrc5,	\blips,\metalplate],{ arg trig=0.0,freq=8000, ffreq=8000,feedb
 			
 },[
 	\trig
-]);
+],\audio);
 
 */
 

@@ -38,7 +38,7 @@ Instr([\trackers,\triscale],{ arg audio,mul=0.4,root=80;
 	amp = Amplitude.kr(in, mul: mul);
 	# freq, hasFreq = Pitch.kr(in);
 	degree = freq.cpsmidi.round(1.0); //treat it like a degree
-	freq = DegreeToKey.kr(FloatArray[ 1, 2, 3, 7, 8, 9, 10 ],degree,12,1,root);
+	freq = DegreeToKey.kr(FloatArray[ 1, 2, 3, 7, 8, 9, 10 ].asBufnum,degree,12,1,root);
 	out = Mix.ar( SinOsc.ar(freq  +  LFNoise1.kr([3,3,3], 0.04)) ) * amp;
 	6.do({ 
 		out = AllpassN.ar(out, 0.040, [Rand(0.001,0.040),Rand(0.001,0.040)], 2) 
@@ -52,7 +52,7 @@ Instr([\trackers,\triscale],{ arg audio,mul=0.4,root=80;
 	\audioEffect
 );
 
-/*  needs the scale
+
 Instr([\trackers,\triscaleq],{ arg audio,mul=0.4,root=80,trig;
 
 	var in, amp, freq, hasFreq, out,degree;
@@ -60,7 +60,7 @@ Instr([\trackers,\triscaleq],{ arg audio,mul=0.4,root=80,trig;
 	amp = Amplitude.kr(in, mul: mul);
 	# freq, hasFreq = Pitch.kr(in);
 	degree = freq.cpsmidi.round(1.0); //treat it like a degree
-	freq = DegreeToKey.kr(FloatArray[ 1, 2, 3, 7, 8, 9, 10 ],degree,12,1,root);
+	freq = DegreeToKey.kr(FloatArray[ 1, 2, 3, 7, 8, 9, 10 ].asBufnum,degree,12,1,root);
 	freq = Latch.kr(freq,trig);
 	out = Mix.ar( SinOsc.ar(freq +  LFNoise1.kr([3,3,3], 0.04)  )) * amp;
 	6.do({ 
@@ -71,8 +71,7 @@ Instr([\trackers,\triscaleq],{ arg audio,mul=0.4,root=80,trig;
 	\audio,
 	[0.0,3.0],
 	[0.0,120,\linear,1]
-]);
-*/
+],\audioEffect);
 
 
 Instr([\trackers,\formant],{ arg audio,formfreq=1087,bwfreq=160,mul=0.4;

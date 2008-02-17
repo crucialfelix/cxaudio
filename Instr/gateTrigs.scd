@@ -42,7 +42,20 @@ Instr([\gateTrigs,\SetResetFF],{ arg trig,trig2;
 	
 	SetResetFF.kr(trig,trig2);
 	
-},nil,\gate);
+},[
+	\trig,
+	\trig
+],\gate);
+
+Instr([\gateTrigs,\dustySetResetFF],{ arg settiness=5.0,resettiness=5.0;
+	var a,b;
+	a = Dust.ar(settiness); // the set trigger
+	b = Dust.ar(resettiness); // the reset trigger
+	SetResetFF.kr(a,b)
+},[
+	\density,
+	\density
+],\gate);
 
 
 Instr([\gateTrigs,\delayedTimer],{ arg trig;

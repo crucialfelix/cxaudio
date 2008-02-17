@@ -44,7 +44,7 @@ Instr("sampler.play1ByPitch",{ arg sample,trig,envperc,pchRatio=1.0,fStart=0.0,t
 )
 
 
-});
+},nil,\audio);
 
 
 
@@ -93,7 +93,7 @@ Instr([\sampler,\looped,\beatLock],{ arg sample,trig,env3sustain,pchRatio=1.0,be
 	 	},trig,env3sustain,nil,sample.numChannels)
 */
 	 	
-});
+},nil,\audio);
 
 
 Instr([\sampler,\looped,\origTempo] ,{  arg sample,trig,env3sustain,pchRatio=1.0,beatStart=0.0;
@@ -137,7 +137,7 @@ Instr([\sampler,\looped,\origTempo] ,{  arg sample,trig,env3sustain,pchRatio=1.0
 				
 * EnvGen.kr(env3sustain, trigf.value(trig),Latch.kr(trig,trig) )
 */
-});
+},nil,\audio);
 
 
 
@@ -187,7 +187,7 @@ Instr([\sampler,\oneShot,\beatLock],{ arg sample,trig,env3sustain,pchRatio=1.0,b
 * EnvGen.kr(env3sustain, trigf.value(trig),Latch.kr(trig,trig) )
 */
 	
-});
+},nil,\audio);
 
 Instr([\sampler,\oneShot,\origTempo],{ arg sample,trig,env3sustain,pchRatio=1.0,beatStart=0.0,tempo;
 
@@ -229,7 +229,7 @@ Instr([\sampler,\oneShot,\origTempo],{ arg sample,trig,env3sustain,pchRatio=1.0,
 * EnvGen.kr(env3sustain, trigf.value(trig),Latch.kr(trig,trig) )
 */
 
-});
+},nil,\audio);
 
 
 // single version
@@ -275,7 +275,7 @@ Instr([\sampler,\oneShot,\cheap],{ arg sample,trig,env;
 		* EnvGen.kr(env, b, amp )
 )
 			
-});
+},nil,\audio);
 
 
 

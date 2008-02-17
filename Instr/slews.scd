@@ -64,7 +64,7 @@ Instr("slews.backup",{ arg audio,slope=500,threshold=0.5,boost=0.3,drive=1.0;
 	[50,10000,\exponential]
 
 
-]);
+],\audioEffect);
 
 
 // aproximates

@@ -82,11 +82,8 @@ Instr.orc(\oscillOrc,[
 		PinkerNoise.ar(amp)
 	},
 	*/
-	\clipn,{ arg amp=1; // wrong !
+	\ClipNoise,{ arg amp;
 		ClipNoise.ar(amp)
-	},
-	\ClipNoise,{ arg freq,amp;
-		ClipNoise.ar(freq,amp)
 	},
 	
 	\gray,{arg amp=1;

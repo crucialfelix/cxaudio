@@ -86,7 +86,7 @@ Instr.orc(\oscillOrcKr,[
 		Resonz.kr(WhiteNoise.kr(4), 500.value, bw)
 	},
 	\ZeroCrossing,{ arg audio;
-		ZeroCrossing.kr(audio)
+		ZeroCrossing.kr(A2K.kr(audio))
 	},
 	
 ],\bipolar);
@@ -100,7 +100,7 @@ Instr.orc(\oscillOrcKr,[
 		PeakFollower.kr(audio,coef)
 	},
 	\Slope,{  arg audio,mul=1.0,add=0.0;
-		Slope.kr(audio,mul,add)
+		Slope.kr(A2K.kr(audio),mul,add)
 	},
 	\PulseCount,{ arg trig,reset=0.0;
 		PulseCount.kr(trig,reset)

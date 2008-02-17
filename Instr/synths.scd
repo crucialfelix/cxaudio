@@ -1,5 +1,8 @@
 
-
+/*
+	these all have trigs or gates but the synth keeps playing
+	mono analog style
+*/
 
 Instr([\synths,\Pulse],{ arg trig=1.0, freq=440,
 			ffreqInterval=0,rq=0.4,env,qnty=4,detune=2;
@@ -16,12 +19,12 @@ Instr([\synths,\Pulse],{ arg trig=1.0, freq=440,
 },[
 	nil,
 	nil,
-	[-48,48,\linear,1],
+	ControlSpec(-48,48,\linear,1,0),
 	nil,
 	\envperc,
 	\qnty,
 	StaticSpec(0,20)
-]);
+],\audio);
 
 
 
@@ -42,10 +45,10 @@ Instr([\synths,\PMOsc,\rlpf],{ arg gate=0.0, freq=440,freq2=440,index=1.0,
 	nil,
 	[100,5000,\exponential],
 	[0.0,10.0],
-	[-48,48,\linear,1],
+	ControlSpec(-48,48,\linear,1,0),
 	nil,
 	\envadsr
-]);
+],\audio);
 
 
 
@@ -75,7 +78,7 @@ Instr([\synths,\PMOsc,\FQenv],{ arg gate=0.0, freq=440,freq2=440,index=1.0,
 	\envadsr,
 	[0.01,5],
 	[0.01,60]
-]);
+],\audio);
 
 
 
@@ -104,7 +107,7 @@ Instr([\synths,\PMOsc,\indexEnv],{ arg gate=0.0, freq=440,freq2=440,index=1.0,in
 	[40,800,\exponential],
 	nil,
 	\envadsr
-]);
+],\audio);
 
 
 
@@ -133,7 +136,7 @@ Instr([\synths,\PMOsc,\freq2Env],{ arg gate=0.0, freq=440,freq2=440,freqRange=1.
 	[40,800,\exponential],
 	nil,
 	\envadsr
-]);
+],\audio);
 
 
 
@@ -226,7 +229,7 @@ Instr([\synths,\stereo,\SinOsc,\clear],{ arg gate=0.0, freq=440,env,qnty=4,detun
 						
 },[
 	nil,nil,\envadsr
-]);
+],\audio);
 
 
 
@@ -242,7 +245,7 @@ Instr([\synths,\stereo,\SinOsc,\pmod],{ arg gate=0.0, freq=440,freq2=20,env,qnty
 						
 },[
 	nil,nil,nil,\envadsr
-]);
+],\audio);
 
 
 
@@ -259,7 +262,7 @@ Instr([\synths,\mono,\SinOsc],{ arg gate=0.0, freq=440,env,qnty=4,detune=2;
 						
 },[
 	nil,nil,\envadsr
-]);
+],\audio);
 
 
 

@@ -81,7 +81,7 @@
 
 
 
-Instr("binOps.\Lin2Xfade",{ arg audio1,audio2,mix;
+Instr("binOps.LinXFade2",{ arg audio1,audio2,mix;
 	var maxc;
 	maxc = max(audio1.numChannels,audio2.numChannels);
 	audio1 = NumChannels.ar(audio1,maxc);

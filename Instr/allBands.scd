@@ -7,7 +7,7 @@
 */
 
 // mids all dust gated
-Instr([\allBands,\threes,\gated],{ arg audio=0.0,
+Instr([\allBands,'threes-gated'],{ arg audio=0.0,
 					lo,lofreq,midDensity=0.5,midfreq=1000,hi,hifreq=9000,
 					wobbleWidth=1000,decay=0.01,bounce=1000,tempo,buffer;
 
@@ -61,7 +61,7 @@ Instr([\allBands,\threes,\gated],{ arg audio=0.0,
 
 
 // all three all dust gated
-Instr([\allBands,\threes,\alldusted],{ arg audio=0.0,
+Instr([\allBands,'threes-alldusted'],{ arg audio=0.0,
 					lo=0.5,lofreq=800,lodensity=0.5,
 					mid=0.5,midfreq=1000,middensity=0.5,
 					hi=0.5,hifreq=9000,hidensity=0.5,
@@ -133,7 +133,7 @@ Instr([\allBands,\threes,\alldusted],{ arg audio=0.0,
 
 // all three all dust gated
 // rlpf does res mod
-Instr([\allBands,\threes,\lowAnd2Delays],{ 
+Instr([\allBands,'threes-lowAnd2Delays'],{ 
 		arg audio=0.0,
 			lo=0.5,lofreq=800,lodensity=0.5,
 			mid=0.5,midfreq=1000,middensity=0.5,

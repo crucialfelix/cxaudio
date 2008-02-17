@@ -1,6 +1,6 @@
 
 // see sampler
-
+// synth stays open and retrigs the sample multiple times
 
 Instr([\samplerf,\rlpf,\rq],{ arg sample,trig,envpercshort,fenv,rq=0.5,pchRatio=1.0,
 		beatStart=0.0,ffreqMul=2000.0,ffreqAdd=40.0;
@@ -14,14 +14,15 @@ Instr([\samplerf,\rlpf,\rq],{ arg sample,trig,envpercshort,fenv,rq=0.5,pchRatio=
 					sample.bufRateScaleKr * pchRatio,
 		 		  	trig,
 		 		  	// offset
-		 		  	beatStart.poll * sample.beatsize,
+		 		  	beatStart * sample.beatsizeIr,
 		 		  	0.0
 		 		  ),
 		 		  EnvGen.kr(fenv,trig,ffreqMul,ffreqAdd),
 		 		  rq)
-		 		  
-	 	},trig,envpercshort) 	
-});
+
+	 	},trig,envpercshort)
+
+},nil,\audio);
 
 
 Instr([\samplerf,\rlpf,\rqenv],{ arg sample,trig,envpercshort,fenv,rqenv,pchRatio=1.0,
@@ -43,7 +44,7 @@ Instr([\samplerf,\rlpf,\rqenv],{ arg sample,trig,envpercshort,fenv,rqenv,pchRati
 		 		  EnvGen.kr(rqenv,trig)
 	 		 )
 	 	},trig,envpercshort)
-});
+},nil,\audio);
 
 
 
@@ -69,7 +70,7 @@ Instr([\samplerf,\rlpf4,\rq],{ arg sample,trig,envpercshort,envlinen,rq=0.5,pchR
 //	nil,nil,nil,nil,nil,nil,nil,
 //	StaticSpec(0.0,1.0),
 //	StaticSpec(0.0,1.0)
-]);
+],\audio);
 
 Instr([\samplerf,\rlpf4,\rqenv],{ arg sample,trig,envpercshort,envlinen,rqenv,pchRatio=1.0,
 		beatStart=0.0,ffreq4Mul=0.8,ffreq4Add=0.0;
@@ -95,7 +96,7 @@ Instr([\samplerf,\rlpf4,\rqenv],{ arg sample,trig,envpercshort,envlinen,rqenv,pc
 //	nil,nil,nil,nil,nil,nil,nil,
 //	StaticSpec(0.0,1.0),
 //	StaticSpec(0.0,1.0)
-]);
+],\audio);
 
 
 
@@ -119,7 +120,7 @@ Instr([\samplerf,\lpf],{ arg sample,trig,envpercshort,fenv,pchRatio=1.0,
 		 		  EnvGen.kr(fenv,trig, ffreqMul,ffreqAdd)
 		 	)
 	 	},trig,envpercshort)	
-});
+},nil,\audio);
 
 
 
@@ -141,10 +142,15 @@ Instr([\samplerf,\hpf],{ arg sample,trig,envpercshort,fenv,pchRatio=1.0,
 		 		  EnvGen.kr(fenv,trig, ffreqMul,ffreqAdd)
 		 	)
 	 	},trig,envpercshort)
-});
+},nil,\audio);
 
 Instr([\samplerf,\rhpf,\rq],{ arg sample,trig,envpercshort,fenv,rq=0.5,pchRatio=1.0,
 		beatStart=0.0,ffreqMul=2000.0,ffreqAdd=40.0;
+
+sample.bufRateScaleKr.dump;
+beatStart.dump;
+sample.beatsize.dump;
+pchRatio.dump;
 
 		Enveloper2.ar({
 			RHPF.ar(
@@ -155,14 +161,14 @@ Instr([\samplerf,\rhpf,\rq],{ arg sample,trig,envpercshort,fenv,rq=0.5,pchRatio=
 					sample.bufRateScaleKr * pchRatio,
 					trig,
 		 		  	// offset
-		 		  	beatStart.poll * sample.beatsize,
+		 		  	beatStart * sample.beatsize,
 					0.0 // no loop
 		 		  ),
 		 		  EnvGen.kr(fenv,trig, ffreqMul,ffreqAdd),
 		 		  rq
 		 	)
 	 	},trig,envpercshort)
-});
+},nil,\audio);
 
 
 
@@ -178,7 +184,7 @@ Instr([\samplerf,\rhpf,\rqenv],{ arg sample,trig,envpercshort,fenv,rqenv,pchRati
 					sample.bufRateScaleKr * pchRatio,
 					trig,
 		 		  	// offset
-		 		  	beatStart.poll * sample.beatsize,
+		 		  	beatStart * sample.beatsize,
 					0.0 // no loop
 		 		  ),
 		 		  EnvGen.kr(fenv,trig, ffreqMul,ffreqAdd),
@@ -186,6 +192,6 @@ Instr([\samplerf,\rhpf,\rqenv],{ arg sample,trig,envpercshort,fenv,rqenv,pchRati
 		 	)
 	 	},trig,envpercshort)
 
-});
+},nil,\audio);
 
 

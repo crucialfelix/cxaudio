@@ -28,12 +28,12 @@ Instr([\oscillOrc2,\tabla],{arg midinote=40,  mod1=0.5,mod2=0.5;
 			(tabla * fingerToDrum) ;		// * 100 is for (estimated) equal peak amplitude
 			
 			
-});
+},nil,\audio);
 
 
 Instr([\oscillOrc2,\randKlang ],{arg freq=500,qnty=10,amp; 
 	Klang.ar(`[ Array.rand(qnty.asInteger, 600.0, 1000.0), nil, nil ], freq/2000,0,qnty.reciprocal * amp) ;	
-});
+},nil,\audio);
 
 
 Instr([\oscillOrc2,\geomKlang],{arg freq=500,freqOffset=500,freqScale=1.0,qnty=10,amp=1.0; 	
@@ -41,7 +41,7 @@ Instr([\oscillOrc2,\geomKlang],{arg freq=500,freqOffset=500,freqScale=1.0,qnty=1
 },[
 	\freq,
 	StaticSpec(1.0,5.0)
-]);
+],\audio);
 
 
 Instr([\oscillOrc2,	\seriesKlang],{arg freq=500,freqOffset=500,freqScale=1.0,qnty=10,amp; 
@@ -49,7 +49,7 @@ Instr([\oscillOrc2,	\seriesKlang],{arg freq=500,freqOffset=500,freqScale=1.0,qnt
 },[
 	\freq,
 	StaticSpec(1.0,5.0)
-]);
+],\audio);
 
 
 // static spec prob ??
@@ -85,5 +85,5 @@ Instr([\oscillOrc2,	\monoClav],{arg qnty=3,freq2=3000,decay=6,mod1=0.5,midinote=
 	\decay,
 	StaticSpec(0,1,\linear,0),
 	\midinote
-]);
+],\audio);
 

@@ -21,7 +21,7 @@ Instr([\kiks,	\hardshape,\xline],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.0
 			,drive);
 			
 		if(amp==1.0,{out},{out * amp})
-});
+},nil,\audio);
 
 
 
@@ -46,7 +46,7 @@ Instr([\kiks,	\hardshape, \line],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.0
 			},trig),drive);
 			
 		if(amp==1.0,{out},{out * amp})
-});
+},nil,\audio);
 
 
 
@@ -69,7 +69,7 @@ Instr([\kiks,	\nodist,\xline],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.01, 
 			},trig);
 			
 		if(amp==1.0,{out},{out * amp})
-});
+},nil,\audio);
 
 
 
@@ -90,7 +90,7 @@ Instr([\kiks,	\nodist, \line],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.01, 
 			},trig);
 			
 		if(amp==1.0,{out},{out * amp})
-});
+},nil,\audio);
 
 
 
@@ -111,7 +111,7 @@ Instr([\kiks,	\anakik,\flat],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.01, n
 					)
 			//},trig)
 			
-	});//.test
+	},nil,\audio);//.test
 	
 	
 
@@ -130,7 +130,7 @@ Instr([\kiks,	\anakik,\soft],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.01, n
 					)).softclip
 			//},trig).softclip
 			
-	});
+	},nil,\audio);
 	
 Instr([\kiks,	\anakik,\hard],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.01, noise=1.0,drive=1.0;
 		var finger;
@@ -148,7 +148,7 @@ Instr([\kiks,	\anakik,\hard],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.01, n
 						//XLine.kr(freq,10,decay)
 					)
 			,drive)
-	});
+	},nil,\audio);
 
 
 Instr([\kiks,	\anakik,\pulse],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.01, noise=1.0,drive=1.0;
@@ -165,7 +165,7 @@ Instr([\kiks,	\anakik,\pulse],{arg trig=0.0,freq=100,decay=0.3,stickDecay=0.01, 
 		//XLine.kr(freq,10,decay)
 	)
 					
-});
+},nil,\audio);
 	
 	
 

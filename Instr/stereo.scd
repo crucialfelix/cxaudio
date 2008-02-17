@@ -116,11 +116,11 @@ Instr([\stereo,\left],{ arg stereo;
 	
 	stereo.at(0)
 
-});
+},nil,EffectSpec(1,1));
 
 Instr([\stereo,\right],{ arg stereo;
 	
 	stereo.at(1)
 
-});
+},nil,EffectSpec(1,1));
 
