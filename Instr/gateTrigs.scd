@@ -49,8 +49,8 @@ Instr([\gateTrigs,\SetResetFF],{ arg trig,trig2;
 
 Instr([\gateTrigs,\dustySetResetFF],{ arg settiness=5.0,resettiness=5.0;
 	var a,b;
-	a = Dust.ar(settiness); // the set trigger
-	b = Dust.ar(resettiness); // the reset trigger
+	a = Dust.kr(settiness); // the set trigger
+	b = Dust.kr(resettiness); // the reset trigger
 	SetResetFF.kr(a,b)
 },[
 	\density,

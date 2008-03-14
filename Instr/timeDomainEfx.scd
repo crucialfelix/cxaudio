@@ -78,6 +78,7 @@ Instr([\timeDomainEfx,\CombsAllPasses],{arg audio,delay=0.1,decay=15,combs=7,
 	\stereoEffect
 );
 
+// something is wrong here
 Instr([\timeDomainEfx,\plate],{ arg audio,feedback=0.8,maxDelay=0.3,
 				qnty=4,bicoef=0.0,bufferProxy; 
 

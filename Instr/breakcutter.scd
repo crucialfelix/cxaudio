@@ -1,4 +1,4 @@
-
+    
 	/*
 		cuts between a breakbeat and the same beat offset by x-amount of beats.
 		like hip-hop cutting with doubles

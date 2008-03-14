@@ -1,5 +1,7 @@
 /*
 
+see also Josh UGens for the same formulas.
+
 sample by sample calculations use these forumula
 	where 
 		in(i) is the current input sample

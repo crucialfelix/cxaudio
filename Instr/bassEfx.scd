@@ -225,7 +225,7 @@ Instr("bassEfx.rlpf",{  arg audio=0.0,ffreq=6000;
 
 
 // has a nice phaseyness.  mids overlap
-Instr("bassEfx.threePump",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,hi,sweepfreq=1000;
+Instr("bassEfx.threePump",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,hi=0.8,sweepfreq=1000;
 	
 	freq = max(freq,halfwidth + 100);
 	Mix.ar([
@@ -251,7 +251,7 @@ Instr("bassEfx.threePump",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,hi,swe
 
 
 // interesting balances
-Instr("bassEfx.threePumpResonz",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,hi,sweepfreq=1000;
+Instr("bassEfx.threePumpResonz",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,hi=0.8,sweepfreq=1000;
 	
 	freq = max(freq,halfwidth + 100);
 	Mix.ar([
@@ -279,7 +279,7 @@ Instr("bassEfx.threePumpResonz",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,
 
 
 // formlet 
-Instr("bassEfx.threePumpFormlet",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,hi,sweepfreq=1000,decay=0.01;
+Instr("bassEfx.threePumpFormlet",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,hi=0.8,sweepfreq=1000,decay=0.01;
 	
 	freq = max(freq,halfwidth + 100);
 	Mix.ar([
@@ -307,7 +307,7 @@ Instr("bassEfx.threePumpFormlet",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo
 
 
 // auto wah 
-Instr("bassEfx.autoWah",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,hi,sweepfreq=1000,decay=0.01,bounce=1000
+Instr("bassEfx.autoWah",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,hi=0.8,sweepfreq=1000,decay=0.01,bounce=1000
 			,attack=0.01,release=0.3;
 	var freqmod;
 	freq = max(freq,halfwidth + 100);
@@ -337,7 +337,7 @@ Instr("bassEfx.autoWah",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,hi,sweep
 
 
 // godlike 
-Instr("bassEfx.autoWahWobble",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,hi,wobbleWidth=1000,decay=0.01,bounce=1000
+Instr("bassEfx.autoWahWobble",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,hi=0.8,wobbleWidth=1000,decay=0.01,bounce=1000
 			,attack=0.01,release=0.3;
 	var freqmod;
 	freq = max(freq,halfwidth + 100);
@@ -366,7 +366,7 @@ Instr("bassEfx.autoWahWobble",{ arg audio=0.0,freq=2000, halfwidth=500,mid,lo,hi
 
 
 
-Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid,lo,hi,wobbleWidth=1000,decay=0.01,bounce=1000
+Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.8,wobbleWidth=1000,decay=0.01,bounce=1000
 			,release=0.3,feedback=0.3,tempo=1.0,buffer;
 
 	var freqmod,halfwidth = 1000;
@@ -401,7 +401,7 @@ Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid,lo,hi,wobbleWidt
 
 
 
-Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid,lo,hi,
+Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.8,
 			wobbleWidth=1000,decay=0.01,bounce=1000,
 			release=0.3,density=0.5,tempo=1.0,buffer;
 
@@ -486,9 +486,9 @@ Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid,lo,hi,
 
 
 Instr("bassEfx.aBasicChannel",{ arg audio=0.0,
-			lo,	lofreq,
-			mid,	midfreq=1000,
-			hi,	hifreq=9000,
+			lo=0.8,	lofreq,
+			mid=0.8,	midfreq=1000,
+			hi=0.8,	hifreq=9000,
 			wobbleWidth=1000,
 			decay=0.01,
 			bounce=1000
@@ -540,9 +540,9 @@ Instr("bassEfx.aBasicChannel",{ arg audio=0.0,
 
 
 Instr("bassEfx.aBasicChannelFlat",{ arg audio=0.0,
-			lo,	lofreq,
-			mid,	midfreq=1000,
-			hi,	hifreq=9000,
+			lo=0.8,	lofreq,
+			mid=0.8,	midfreq=1000,
+			hi=0.8,	hifreq=9000,
 			wobbleWidth=1000,
 			decay=0.01,
 			bounce=1000
@@ -597,9 +597,9 @@ Instr("bassEfx.aBasicChannelFlat",{ arg audio=0.0,
 // clearer, but no crunch
 // screwed up
 Instr("bassEfx.aBasicChannel2",{ arg audio=0.0,
-										lo,	lofreq,
-										mid,	midfreq=1000,
-										hi,	hifreq=9000,
+										lo=0.8,	lofreq,
+										mid=0.8,	midfreq=1000,
+										hi=0.8,	hifreq=9000,
 										wobbleWidth=1000,
 										bounce=1000,
 										feedbackDensity=0.5,
