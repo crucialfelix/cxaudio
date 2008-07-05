@@ -164,6 +164,8 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
         dB/octave, remains proportional to S for all other values.
 */
 
+// see HighShelf in BiquadEQ.sc / JoshUGens
+// which is the same thing as here but slightly optimized
 HiShelf {
 
 	*ar {		arg in,freq=440.0,gain=1.0,shelf=1.0,mul=1.0,add=0.0;
@@ -171,7 +173,7 @@ HiShelf {
 		var b0,b1,b2,a1,a2,a0,a0n;
 		var omega,sin,cos,beta;
 		
-		omega = 2pi * freq/(Server.default.sampleRate ? Server.default.options.sampleRate ? 44000.0);
+		omega = 2pi * freq/SampleRate.ir;//(Server.default.sampleRate ? Server.default.options.sampleRate ? 44000.0);
 		sin   = sin(omega);
   	 	cos   = cos(omega);
 		beta = sqrt( (gain.squared + 1)/shelf - ((gain-1.0).squared));
