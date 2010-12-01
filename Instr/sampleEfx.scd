@@ -93,12 +93,12 @@ Instr([\sampleEfx,\Warp1],{
 //			var offset;
 //		
 //			// randomize the playbuf offset
-//			offset = (pointer.poll.abs * bufSize  + ( windowRandRatio.poll.rand * windowSize.poll * sampleRate ) );
+//			offset = (pointer.abs * bufSize  + ( windowRandRatio.rand * windowSize * sampleRate ) );
 //		
 //		
-//			PlayBuf.ar( buffer, sampleRate, pchRatio.poll, offset, 0,
+//			PlayBuf.ar( buffer, sampleRate, pchRatio, offset, 0,
 //					bufSize, 
-//					EnvGen.kr( windowEnv, amp, 0, 1, 0, min( windowSize.poll, bufBySR ) ) 
+//					EnvGen.kr( windowEnv, amp, 0, 1, 0, min( windowSize, bufBySR ) ) 
 //			)
 //		
 //		}, sample.numChannels, nil, Impulse.kr( overlaps/windowSize ) );
@@ -212,8 +212,8 @@ Instr([\sampleEfx,\riddimWarp],{  arg sample, pointer, trig, pchRatio=1.0, wobbl
 		
 		TSpawn.ar( { arg spawm, i, synth;
 
-			PlayBuf.ar( buffer, sampleRate, pchRatio.poll, 
-			pointer.poll + wobble.poll * bufSize, 0, sample.end , EnvGen.kr(windowEnv) )
+			PlayBuf.ar( buffer, sampleRate, pchRatio, 
+			pointer + wobble * bufSize, 0, sample.end , EnvGen.kr(windowEnv) )
 
 		}, sample.numChannels, nil, trigger );
 */	

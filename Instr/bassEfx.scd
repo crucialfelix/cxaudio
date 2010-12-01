@@ -367,7 +367,7 @@ Instr("bassEfx.autoWahWobble",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,l
 
 
 Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.8,wobbleWidth=1000,decay=0.01,bounce=1000
-			,release=0.3,feedback=0.3,tempo=1.0,buffer;
+			,release=0.3,feedback=0.3,buffer;
 
 	var freqmod,halfwidth = 1000;
 	freq = max(freq,halfwidth + 100);
@@ -377,7 +377,7 @@ Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
 		PingPongT.ar(buffer.bufnumIr,
 			 Formlet.ar(audio,freqmod, 0.0005,decay ,mid) ,
-			0.375,feedback,0.05,tempo:tempo
+			0.375,feedback,0.05,tempo:Tempo.kr
 		),
 		 HardShaper.ar( HPF.ar(audio,freq + halfwidth),hi * 6.0)
 	])
@@ -403,7 +403,7 @@ Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.
 
 Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.8,
 			wobbleWidth=1000,decay=0.01,bounce=1000,
-			release=0.3,density=0.5,tempo=1.0,buffer;
+			release=0.3,density=0.5,buffer;
 
 	var freqmod,halfwidth = 1000;
 	var feedback;
@@ -421,7 +421,7 @@ Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,h
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
 		PingPongT.ar(buffer.bufnumIr,
 			 Formlet.ar(audio,freqmod, 0.0005,decay ,mid) ,
-			 0.375,feedback,0.05,tempo: tempo
+			 0.375,feedback,0.05,tempo: Tempo.kr
 		),
 		 HardShaper.ar( HPF.ar(audio,freq + halfwidth),hi * 6.0)
 	])

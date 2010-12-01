@@ -1,18 +1,15 @@
 
 // trig inputs, gate outputs
 
-Instr([\gateTrigs,\Decay2],{ arg trig,attack=0.05,decay=0.2,max=4.0;
+Instr([\gateTrigs,\Decay2],{ arg trig,attack=0.05,decay=0.2;
 
 	var out;
 	out = Decay2.kr(trig,attack,decay);
 
-	if(max != 4.0,{
-		out = out.min(4.0);
-	});
 	out
 	
 },[
-	nil,nil,nil,[0.1,4.0]
+	nil,nil,nil
 ],\gate);
 
 

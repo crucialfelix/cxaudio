@@ -163,7 +163,7 @@ Instr([\klankperc,\blip,\dive,\flat],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset=0
 				Enveloper2.ar(  
 					Blip.ar(
 						EnvGen.kr(Env.new([1.0,0.1],[1.0],\exp),trig,freq,0,decay)
-						//XLine.kr(freq.poll,10,decay.poll)
+						//XLine.kr(freq,10,decay)
 							,numHarms, 0.006)   , trig),
 				sfreqScale,sfreqOffset,stimeScale
 			)
@@ -187,7 +187,7 @@ Instr([\klankperc,\blip,\dive,\crunch],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset
 					nil,
 					FloatArray[ 0.00877374, 0.0359073, 0.0696307, 0.00696222, 0.0180813, 0.0432172 ]
 				],
-				Enveloper2.ar( Blip.ar(XLine.kr(freq.poll,10,decay.poll),numHarms, 0.06)    , trig),
+				Enveloper2.ar( Blip.ar(XLine.kr(freq,10,decay),numHarms, 0.06)    , trig),
 				sfreqScale,sfreqOffset,stimeScale
 			).squared.fold2(foldAt)
 			* gain		
@@ -209,7 +209,7 @@ Instr([\klankperc,\blip,\dive,\crunch2],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffs
 			nil,
 			FloatArray[ 0.554637, 0.451605, 0.521619 ]
 		],
-		Enveloper2.ar(  Blip.ar(XLine.kr(freq.poll,10,decay.poll),numHarms, 0.06)   , trig),
+		Enveloper2.ar(  Blip.ar(XLine.kr(freq,10,decay),numHarms, 0.06)   , trig),
 		ssfreqScale,sfreqOffset,stimeScale
 	).squared.fold2(foldAt)
 		* gain		
@@ -238,7 +238,7 @@ Instr([\klankperc,\blip,\dive,\crunch3],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffs
 					nil,
 					FloatArray[ 0.87422, 0.521266 ]
 				],
-				Enveloper2.ar( Blip.ar(XLine.kr(freq.poll,10,decay.poll),numHarms, 0.06)   , trig),
+				Enveloper2.ar( Blip.ar(XLine.kr(freq,10,decay),numHarms, 0.06)   , trig),
 				ssfreqScale,sfreqOffset,stimeScale
 			).squared.fold2(foldAt)
 			* gain		

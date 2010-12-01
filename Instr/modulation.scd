@@ -36,7 +36,7 @@ Instr([\modulation, \SinChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1;
 },[
 	\audio,
 	\qnty,
-	StaticSpec(0.001,0.1),
+	ScalarSpec(0.001,0.1),
 	[0.01,2.0,\exponential]
 ],
 	\audioEffect
@@ -50,7 +50,7 @@ Instr([\modulation, \NoiseChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1
 },[
 	\audio,
 	\qnty,
-	StaticSpec(0.001,0.1),
+	ScalarSpec(0.001,0.1),
 	[0.01,2.0,\exponential]
 ],\audioEffect);
 
@@ -62,7 +62,7 @@ Instr([\modulation, \CombAChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1
 },[
 	\audio,
 	\qnty,
-	StaticSpec(0.001,0.1),
+	ScalarSpec(0.001,0.1),
 	[0.01,2.0,\exponential]
 ],\audioEffect);
 
@@ -75,7 +75,7 @@ Instr([\modulation, \CombNChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1
 },[
 	\audio,
 	\qnty,
-	StaticSpec(0.001,0.1),
+	ScalarSpec(0.001,0.1),
 	[0.01,2.0,\exponential]
 ],\audioEffect);
 

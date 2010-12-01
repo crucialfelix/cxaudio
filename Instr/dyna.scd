@@ -18,7 +18,7 @@ Instr([\dyna,\transDriven],{ arg audio=0.0,sensitivity=0.01,attack=0.01,release=
 	[0.0,0.1]
 
 ],
-	\audioEffect
+	\audio
 );
 
 Instr([\dyna,\crossDriveTrans],{ arg audio=0.0,key=0.0,sensitivity=0.01,attack=0.01,release=0.1;
@@ -38,7 +38,7 @@ Instr([\dyna,\crossDriveTrans],{ arg audio=0.0,key=0.0,sensitivity=0.01,attack=0
 	[0.0,0.1]
 
 ],
-	\dualAudioEffect
+	\audio
 );
 
 
@@ -60,7 +60,7 @@ Instr([\dyna,\audioByKey],{ arg audio=0.0,key=0.0,sensitivity=1.0,attack=0.01,re
 	[0.0,10.0]
 
 ],
-	\dualAudioEffect
+	\audio
 );
 
 

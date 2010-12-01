@@ -37,7 +37,7 @@ Instr([\samplerf,\rlpf,\rqenv],{ arg sample,trig,envpercshort,fenv,rqenv,pchRati
 					sample.bufRateScaleKr * pchRatio,
 					trig,
 		 		  	// offset
-		 		  	beatStart.poll * sample.beatsize,
+		 		  	beatStart * sample.beatsize,
 					0.0 // no loop
 		 		  ),
 		 		  EnvGen.kr(fenv,trig,ffreqMul,ffreqAdd),
@@ -60,7 +60,7 @@ Instr([\samplerf,\rlpf4,\rq],{ arg sample,trig,envpercshort,envlinen,rq=0.5,pchR
 				sample.bufRateScaleKr * pchRatio,
 				trig,
 	 		  	// offset
-	 		  	beatStart.poll * sample.beatsize,
+	 		  	beatStart * sample.beatsize,
 				0.0 // no loop
 	 		  ),
 	 		  EnvGen.kr(envlinen,trig,\freq.asSpec.map(ffreq4Mul),\freq.asSpec.map(ffreq4Add)),
@@ -85,7 +85,7 @@ Instr([\samplerf,\rlpf4,\rqenv],{ arg sample,trig,envpercshort,envlinen,rqenv,pc
 					sample.bufRateScaleKr * pchRatio,
 					trig,
 		 		  	// offset
-		 		  	beatStart.poll * sample.beatsize,
+		 		  	beatStart * sample.beatsize,
 					0.0 // no loop
 		 		  ),
 		 		  EnvGen.kr(envlinen,trig,\freq.asSpec.map(ffreq4Mul),
@@ -115,7 +115,7 @@ Instr([\samplerf,\lpf],{ arg sample,trig,envpercshort,fenv,pchRatio=1.0,
 					sample.bufRateScaleKr * pchRatio,
 					trig,
 		 		  	// offset
-		 		  	beatStart.poll * sample.beatsize,
+		 		  	beatStart * sample.beatsize,
 					0.0 // no loop
 		 		  ),
 		 		  EnvGen.kr(fenv,trig, ffreqMul,ffreqAdd)
@@ -138,7 +138,7 @@ Instr([\samplerf,\hpf],{ arg sample,trig,envpercshort,fenv,pchRatio=1.0,
 					sample.bufRateScaleKr * pchRatio,
 					trig,
 		 		  	// offset
-		 		  	beatStart.poll * sample.beatsize,
+		 		  	beatStart * sample.beatsize,
 					0.0 // no loop
 		 		  ),
 		 		  EnvGen.kr(fenv,trig, ffreqMul,ffreqAdd)

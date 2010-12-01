@@ -13,7 +13,7 @@
 //trigf = 	{ arg t; Trig1.kr(t,0.4); };
 //trigf = { arg t; 1.0 - t };
 
-Instr("sampler.play1ByPitch",{ arg sample,trig,envperc,pchRatio=1.0,fStart=0.0,tempo;
+Instr("sampler.play1ByPitch",{ arg sample,trig,envperc,pchRatio=1.0,fStart=0.0;
 
 	var a,b,amp;
 	a = ToggleFF.kr(trig);
@@ -87,7 +87,7 @@ Instr([\sampler,\looped,\beatLock],{ arg sample,trig,env3sustain,pchRatio=1.0,be
 	 		  	// pitch
 	 		  	pchRatio ,
 	 		  	// offset
-	 		  	beatStart.poll * sample.beatsize,
+	 		  	beatStart * sample.beatsize,
 	 		  	0, sample.end //loop points
 	 		  )
 	 	},trig,env3sustain,nil,sample.numChannels)
@@ -189,7 +189,7 @@ Instr([\sampler,\oneShot,\beatLock],{ arg sample,trig,env3sustain,pchRatio=1.0,b
 	
 },nil,\audio);
 
-Instr([\sampler,\oneShot,\origTempo],{ arg sample,trig,env3sustain,pchRatio=1.0,beatStart=0.0,tempo;
+Instr([\sampler,\oneShot,\origTempo],{ arg sample,trig,env3sustain,pchRatio=1.0,beatStart=0.0;
 
 	var a,b,amp;
 	a = ToggleFF.kr(trig);
