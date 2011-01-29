@@ -111,3 +111,12 @@ Instr("slews.differentiate",{ arg audio=0.0,splitfreq=300,slewslope=12000,unslew
 );
 
 
+Instr("slews.lagud",{ arg audio,attack=0.02,decay=0.1;
+    LagUD.ar(audio,attack,decay)
+},[
+    \audio,
+    StaticSpec(0,0.1),
+    StaticSpec(0,0.1)
+]);
+
+

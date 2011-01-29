@@ -46,11 +46,14 @@ Instr.orc(\oscillOrc,[
 	\lftri,{ arg freq=440,amp=1.0,iphase=0.0;
 		LFTri.ar(freq,iphase,amp)
 	},
-	\lfpulse,{ arg freq=440,amp=1.0,iphase=0.0;
-		LFPulse.ar(freq,iphase,amp)
+	\lfpulse,{ arg freq=440,amp=1.0,iphase=0.0,width=0.5;
+		LFPulse.ar(freq,iphase,width,amp)
 	},
 	\impulse,{ arg freq=440,amp=1.0,iphase=0.0;
 		Impulse.ar(freq,iphase,amp)
+	},
+	\varsaw,{ arg freq=440,iphase=0.0,width=0.5,amp=1.0;
+		VarSaw.ar(freq,iphase,width,amp)
 	},
 
 	
