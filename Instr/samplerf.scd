@@ -2,6 +2,12 @@
 // see sampler
 // synth stays open and retrigs the sample multiple times
 
+Spec.add(\rqenv, EnvSpec(  Env.new([ 0.194444, 0.0810185, 0.0648148, 0.444444 ], [ 0.01, 0.111111, 0.0833333 ], [ -0.583333, 3.33333, 1.66667 ], nil, nil)));
+
+Spec.add(\envpercshort, EnvSpec(Env.new([ 0, 1, 1, 0.444444, 0 ], [ 0.166667, 1, 0.805556, 0.777778 ], [ -7.16667, -2, 2, -2 ], nil, nil)));
+
+
+
 Instr([\samplerf,\rlpf,\rq],{ arg sample,trig,envpercshort,fenv,rq=0.5,pchRatio=1.0,
 		beatStart=0.0,ffreqMul=2000.0,ffreqAdd=40.0;
 

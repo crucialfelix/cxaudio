@@ -117,6 +117,6 @@ Instr("slews.lagud",{ arg audio,attack=0.02,decay=0.1;
     \audio,
     StaticSpec(0,0.1),
     StaticSpec(0,0.1)
-]);
+],\audio);
 
 

@@ -8,6 +8,8 @@
 	
 */
 
+Spec.add(\env3, EnvSpec(Env.new([0,1,1,0],[0,1,0]).releaseNode_(2)));
+
 
 //var trigf;
 //trigf = 	{ arg t; Trig1.kr(t,0.4); };

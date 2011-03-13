@@ -35,9 +35,10 @@ Instr([\gateTrigs,\ToggleFF],{ arg trig;
 	
 },nil,\gate);
 
-Instr([\gateTrigs,\SetResetFF],{ arg trig,trig2;
-	
-	SetResetFF.kr(trig,trig2);
+Instr([\gateTrigs,\SetResetFF],{ arg trig,reset;
+	// holds trig value until it gets a reset
+	// then waits for trig again
+	SetResetFF.kr(trig,reset);
 	
 },[
 	\trig,

@@ -166,6 +166,8 @@ highShelf:  H(s) = A * (A*s^2 + (sqrt(A)/Q)*s + 1) / (s^2 + (sqrt(A)/Q)*s + A)
 
 // see HighShelf in BiquadEQ.sc / JoshUGens
 // which is the same thing as here but slightly optimized
+// update: missing
+
 HiShelf {
 
 	*ar {		arg in,freq=440.0,gain=1.0,shelf=1.0,mul=1.0,add=0.0;

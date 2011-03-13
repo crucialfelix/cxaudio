@@ -285,5 +285,16 @@ Instr("filters.amp",{ arg audio=0.0,amp=1.0;
     \audioEffect
 );
 
+Instr("filters.dbAmp",{ arg audio=0.0,db=0;
+    audio * db.dbamp
+},
+    [
+    	\audio,
+    	[-100,12]
+    ],
+    \audioEffect
+);
+
+
 
 

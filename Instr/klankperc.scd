@@ -203,13 +203,17 @@ Instr([\klankperc,\blip,\dive,\crunch],{ arg trig=0.0,sfreqScale=1.0,sfreqOffset
 
 Instr([\klankperc,\blip,\dive,\crunch2],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffset=0.0,stimeScale=1.0,
 				numHarms=2.0,freq=10,gain=1.0,decay=0.1,foldAt=0.1;
+	// the decay is a pitch decay down to 10
+	// to excite the Klank
+	var xline;
+	xline = EnvGen.kr( Env.perc(0.0,1.0,1.0,-8) ,trig,levelScale: freq - 10, levelBias: 10, timeScale: decay);
 	Klank.ar(
 		`[
 			FloatArray[ 250.631, 102.046, 362.43 ],
 			nil,
 			FloatArray[ 0.554637, 0.451605, 0.521619 ]
 		],
-		Enveloper2.ar(  Blip.ar(XLine.kr(freq,10,decay),numHarms, 0.06)   , trig),
+		Enveloper2.ar(  Blip.ar(xline,numHarms, 0.06)   , trig),
 		ssfreqScale,sfreqOffset,stimeScale
 	).squared.fold2(foldAt)
 		* gain		
@@ -232,13 +236,19 @@ Instr([\klankperc,\blip,\dive,\crunch2],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffs
 
 
 Instr([\klankperc,\blip,\dive,\crunch3],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffset=0.0,stimeScale=1.0,numHarms=2.0,freq=10,gain=1.0,decay=0.1,foldAt=0.1;
+
+	// the decay is a pitch decay down to 10
+	// to excite the Klank
+	var xline;
+	xline = EnvGen.kr( Env.perc(0.0,1.0,1.0,-8) ,trig,levelScale: freq - 10, levelBias: 10, timeScale: decay);
+
 	Klank.ar(
 				`[
 					FloatArray[ 68.1516, 64.1059 ],
 					nil,
 					FloatArray[ 0.87422, 0.521266 ]
 				],
-				Enveloper2.ar( Blip.ar(XLine.kr(freq,10,decay),numHarms, 0.06)   , trig),
+				Enveloper2.ar( Blip.ar(xline,numHarms, 0.06)   , trig),
 				ssfreqScale,sfreqOffset,stimeScale
 			).squared.fold2(foldAt)
 			* gain		
