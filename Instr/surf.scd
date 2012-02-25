@@ -17,7 +17,7 @@ Instr([\surf,\slew] ,{ arg audio,tideFreq=0.05,waveFreq = 0.1, min=40,max=12000,
 	\freq,
 	\linear
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -38,7 +38,7 @@ Instr([\surf,\rlpf] ,{ arg audio,tideFreq=0.05,waveFreq = 0.1, min=100,max=12000
 	\freq,
 	\linear
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -56,7 +56,7 @@ Instr([\surf,\rez] ,{ arg audio,tideFreq=0.05,waveFreq = 0.1, min=0.02,max=1.4,t
 	[0,0.5],
 	\rq,\rq
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -75,7 +75,7 @@ Instr([\surf,\bpf] ,{ arg audio,tideFreq=0.05,waveFreq = 0.1, min=0.02,max=1.4,t
 	[0,0.5],
 	\rq,\rq
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -93,7 +93,7 @@ Instr([\surf,\RHPF] ,{ arg audio,tideFreq=0.05,waveFreq = 0.1, min=100,max=4000,
 	[0,0.2],
 	[0,0.5],
 	\ffreq,\ffreq
-],\audioEffect);
+],\audio);
 
 */
 

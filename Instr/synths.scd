@@ -254,7 +254,7 @@ Instr([\synths,\stereo,\SinOsc,\pmod],{ arg gate=0.0, freq=440,freq2=20,env,qnty
 Instr([\synths,\mono,\SinOsc],{ arg gate=0.0, freq=440,env,qnty=4,detune=2;
 	var p;
 	
-	p = Mix.arFill(qnty.asInteger,{ arg i;
+	p = Mix.fill(qnty.asInteger,{ arg i;
 			SinOsc.ar(freq + (detune  * [-1,1].choose))
 		}) * qnty.reciprocal;
 

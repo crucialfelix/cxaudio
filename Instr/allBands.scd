@@ -7,9 +7,9 @@
 */
 
 // mids all dust gated
-Instr([\allBands,'threes-gated'],{ arg audio=0.0,
+Instr("allBands.threes-gated",{ arg audio=0.0,
 					lo,lofreq,midDensity=0.5,midfreq=1000,hi,hifreq=9000,
-					wobbleWidth=1000,decay=0.01,bounce=1000,tempo,buffer;
+					wobbleWidth=1000,decay=0.01,bounce=1000,tempo;
 
 	var freqmod;
 	var feedback;
@@ -29,11 +29,11 @@ Instr([\allBands,'threes-gated'],{ arg audio=0.0,
 
 	feedback = 0.8; 
 	
-	audio = NumChannels.ar(audio,buffer.numChannels);
+	audio = NumChannels.ar(audio,2);
 				
-	Mix.ar([
+	Mix.new([
 		RLPF.ar(audio,Clip.kr(lofmod,60,9000),resmod,lo * 9.0).softclip,
-		PingPongT.ar(buffer.bufnumIr,
+		PingPongT.ar(nil,
 			 Formlet.ar(audio,freqmod, 0.005,decay ,mid) ,
 			 0.375,feedback,0.04,1,tempo
 		),
@@ -61,11 +61,11 @@ Instr([\allBands,'threes-gated'],{ arg audio=0.0,
 
 
 // all three all dust gated
-Instr([\allBands,'threes-alldusted'],{ arg audio=0.0,
+Instr("allBands.threes-alldusted",{ arg audio=0.0,
 					lo=0.5,lofreq=800,lodensity=0.5,
 					mid=0.5,midfreq=1000,middensity=0.5,
 					hi=0.5,hifreq=9000,hidensity=0.5,
-					wobbleWidth=1000,decay=0.01,bounce=1000,tempo,buffer;
+					wobbleWidth=1000,decay=0.01,bounce=1000,tempo;
 
 	var freqmod;
 	var feedback;
@@ -95,11 +95,11 @@ Instr([\allBands,'threes-alldusted'],{ arg audio=0.0,
 			Dust.kr(hidensity),
 			0.1,hidensity.reciprocal,hi );
 	
-	audio = NumChannels.ar(audio,buffer.numChannels);
+	audio = NumChannels.ar(audio,2);
 		
-	Mix.ar([
+	Mix.new([
 	   RLPF.ar(audio,Clip.kr(lofmod,60,9000),resmod,lo * 9.0).softclip,
-		PingPongT.ar(buffer.bufnumIr,
+		PingPongT.ar(nil,
 			 Formlet.ar(audio,freqmod, 0.005,decay ,mid) ,
 			 0.375,feedback,0.03,1,tempo
 		),
@@ -133,12 +133,12 @@ Instr([\allBands,'threes-alldusted'],{ arg audio=0.0,
 
 // all three all dust gated
 // rlpf does res mod
-Instr([\allBands,'threes-lowAnd2Delays'],{ 
+Instr("allBands.threes-lowAnd2Delays",{ 
 		arg audio=0.0,
 			lo=0.5,lofreq=800,lodensity=0.5,
 			mid=0.5,midfreq=1000,middensity=0.5,
 			hi=0.5,hifreq=9000,hidensity=0.5,
-			wobbleWidth=1000,decay=0.01,bounce=1000,tempo,buffer,buffer2;
+			wobbleWidth=1000,decay=0.01,bounce=1000,tempo;
 
 	var freqmod;
 	var feedback;
@@ -168,15 +168,15 @@ Instr([\allBands,'threes-lowAnd2Delays'],{
 			Dust.kr(hidensity),
 			0.1,hidensity.reciprocal,hi );
 	
-	audio = NumChannels.ar(audio,buffer.numChannels);
+	audio = NumChannels.ar(audio,2);
 		
-	Mix.ar([
+	Mix.new([
 	   RLPF.ar(audio,Clip.kr(lofmod,60,9000),resmod,lo * 9.0),
-		PingPongT.ar(buffer.bufnumIr,
+		PingPongT.ar(nil,
 			 Formlet.ar(audio,freqmod, 0.005,decay ,mid) ,
 			0.375,feedback,0.03,1,tempo
 		),
-		PingPongT.ar(buffer2.bufnumIr,
+		PingPongT.ar(nil,
 			 HardShaper.ar( HPF.ar(audio,hifreq),hi * 6.0),
 			 0.25,feedback,0.03,1,tempo
 		)
@@ -198,9 +198,7 @@ Instr([\allBands,'threes-lowAnd2Delays'],{
 	[60,2000,\exponential],
 	[0.001,0.1,\exponential],
 	[0,7000],
-	\tempo,
-	\buffer,
-	\buffer
+	\tempo
 ],
 	\stereoEffect
 );
@@ -212,12 +210,12 @@ Instr([\allBands,'threes-lowAnd2Delays'],{
 
 // 2 channels only
 //  all dust gated
-Instr([\allBands,\twos,\bothDusted],{ 
+Instr("allBands.twos.bothDusted",{ 
 		arg audio=0.0,
 			lo=0.5,lofreq=800,
 			hi=0.5,hifreq=9000,
 			density=0.5,overlap=0.3,
-			wobbleWidth=1000,decay=0.01,bounce=1000,tempo,buffer,buffer2;
+			wobbleWidth=1000,decay=0.01,bounce=1000,tempo;
 
 	var freqmod;
 	var feedback=0.8;
@@ -239,15 +237,15 @@ Instr([\allBands,\twos,\bothDusted],{
 			Dust.kr(density),
 			0.1, overlap,hi );
 	
-	audio = NumChannels.ar(audio,buffer.numChannels);
+	audio = NumChannels.ar(audio,2);
 	//audio = NumChannels.ar(audio,buffer.numChannels);
 
-	Mix.ar([
-		PingPongT.ar(buffer.bufnumIr,
+	Mix.new([
+		PingPongT.ar(nil,
 			 Formlet.ar(audio,ampl + lofreq, 0.005,decay ,lo) ,
 			 0.375,feedback,0.03,1,tempo
 		),
-		PingPongT.ar(buffer2.bufnumIr,
+		PingPongT.ar(nil,
 		 	Formlet.ar(audio,ampl + hifreq, 0.005,decay ,hi) ,
 				 0.25,feedback,0.03,1,tempo
 		)
@@ -268,7 +266,7 @@ Instr([\allBands,\twos,\bothDusted],{
 	[5,2000,\exponential],
 	[0.001,0.1,\exponential],
 	[-7000,7000],
-	\tempo,\buffer,\buffer	
+	\tempo
 ],
 	\stereoEffect
 );
@@ -294,7 +292,7 @@ Instr([\allBands,\slewlock],{ arg audio,xover1=1200,xover2=7000,slope=500,indriv
 	
 	mid = Instr.ar([\slews,\backup2],[mid,slope,indrive]);
 	
-	Mix.ar([ lo * lov, mid * midv,hi * hiv ])
+	Mix.new([ lo * lov, mid * midv,hi * hiv ])
 	
 },#[
 	\audio,

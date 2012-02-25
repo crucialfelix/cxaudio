@@ -17,7 +17,7 @@ Instr("remover.bySlew",{ arg audio=0.0,sensitivity=0.0,slope=500;
 	[10,12000,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -34,7 +34,7 @@ Instr("remover.bySlew2",{ arg audio=0.0,sensitivity=0.0,slope=500;
 	[10,12000,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 

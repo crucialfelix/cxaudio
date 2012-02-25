@@ -101,4 +101,17 @@ Instr([\spawnEvents,\PlayBuf,\oneShotLinen],{ arg sample,pchRatioStream=1.0,atta
 });
 
 
+Instr("spawnEvents.EnvGen",{ arg audio, env,amp;
+
+	audio * EnvGen.kr(env,levelScale:amp,doneAction:2)
+
+},[
+	\audio,
+	EnvSpec(Env.linen),
+	\amp
+],
+	'audioEvent'
+);
+
+
 

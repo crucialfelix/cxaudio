@@ -3,7 +3,7 @@
 // remove some
 Instr("bassEfx.brf",{  arg audio=0.0,ffreq=200,rq8=0.8;
 	BRF.ar(audio ,ffreq,rq8 )
-},nil,\audioEffect);
+},nil,\audio);
 
 
 
@@ -18,7 +18,7 @@ Instr("bassEfx.slewd2",{  arg audio=0.0,slewRise=300,slewFall;
 	[50,3000],
 	[50,3000]
 	
-],\audioEffect);
+],\audio);
 
 
 // simpler awesome
@@ -31,7 +31,7 @@ Instr("bassEfx.slewd",{  arg audio=0.0,slew=300;
 	[50,3000]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -46,7 +46,7 @@ Instr("bassEfx.hardGainChan",{ arg audio=0.0,freq=200,rq8=1.0,drive=1.0;
 	// phasey ness is nice actually
 	rest = BRF.ar( audio, freq, rq8);
 	
-	mix=Mix.ar([chan,rest ]);
+	mix=Mix.new([chan,rest ]);
 
 },#[
 	\audio,
@@ -55,14 +55,14 @@ Instr("bassEfx.hardGainChan",{ arg audio=0.0,freq=200,rq8=1.0,drive=1.0;
 	[0,20]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
 // two channels. pumper
 Instr("bassEfx.deucePump",{ arg audio=0.0,freq=200, lo=1.0,hi=1.0;
 						
-	Mix.ar([
+	Mix.new([
 		 LPF.ar(audio,freq,lo).softclip,
 		 HardShaper.ar( HPF.ar(audio,freq),hi)
 	])
@@ -74,7 +74,7 @@ Instr("bassEfx.deucePump",{ arg audio=0.0,freq=200, lo=1.0,hi=1.0;
 	[0,10]
 
 ],
-	\audioEffect
+	\audio
 );
 
 // two channels. balance pumper
@@ -84,7 +84,7 @@ Instr("bassEfx.deucePump2",{ arg audio=0.0,freq=500, drive=1,balance=0.5;
 	/* # lo, hi = LinPan2.kr(drive,balance);			*/	lo = drive * (1.0 - balance);
 	hi = drive * balance;
 
-	Mix.ar([
+	Mix.new([
 		 LPF.ar(audio,freq,lo * 9.0).softclip,
 		 HardShaper.ar( HPF.ar(audio,freq),hi * 6.0)
 	])
@@ -101,7 +101,7 @@ Instr("bassEfx.deucePump2",{ arg audio=0.0,freq=500, drive=1,balance=0.5;
 	[0,1.5],
 	\pan
 ],
-	\audioEffect
+	\audio
 );
 
 // two channels. balance pumper.  xover
@@ -110,7 +110,7 @@ Instr("bassEfx.deucePump2b",{ arg audio=0.0,freq=500, drive=1,balance=0.5;
 //	var lo,hi,loa,hia;
 //	# lo, hi = LinPan2.kr(drive,balance);					
 //	# loa , hia = Instr.ar([\splits,\xover],[ audio,freq,lo * 9.0,hi * 6.0]);
-//	Mix.ar([
+//	Mix.new([
 //		 loa.softclip,
 //		 HardShaper.ar( hia)
 //	])
@@ -120,7 +120,7 @@ Instr("bassEfx.deucePump2b",{ arg audio=0.0,freq=500, drive=1,balance=0.5;
 	hi = drive * balance;
 	
 	# loa , hia = Instr.ar([\splits,\xover],[ audio,freq,lo * 9.0,hi * 6.0]);
-	Mix.ar([
+	Mix.new([
 		 loa.softclip,
 		 HardShaper.ar( hia)
 	])
@@ -131,7 +131,7 @@ Instr("bassEfx.deucePump2b",{ arg audio=0.0,freq=500, drive=1,balance=0.5;
 	[0,1.5],
 	\pan
 ],
-	\audioEffect
+	\audio
 );
 
 // two channels. balance pumper
@@ -143,7 +143,7 @@ Instr("bassEfx.deucePumpFlat",{ arg audio=0.0,freq=500, drive=1,balance=0.5;
 	hi = drive * balance;
 
 	# loa , hia = Instr.ar([\splits,\xover],[ audio,freq,lo * 9.0,hi * 6.0]);
-	Mix.ar([
+	Mix.new([
 		 loa,
 		 hia
 	])
@@ -154,7 +154,7 @@ Instr("bassEfx.deucePumpFlat",{ arg audio=0.0,freq=500, drive=1,balance=0.5;
 	[0,1.5],
 	\pan
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -166,7 +166,7 @@ Instr("bassEfx.deucePumpHalfFlat",{ arg audio=0.0,freq=500, drive=1,balance=0.5,
 	hi = drive * balance;
 
 	# loa , hia = Instr.ar([\splits,\xover],[ audio,(freq + LFNoise1.kr(0.2,200)).max(60),lo * max,hi * max]);
-	Mix.ar([
+	Mix.new([
 		 loa,
 		 hia
 	]).softclip
@@ -178,7 +178,7 @@ Instr("bassEfx.deucePumpHalfFlat",{ arg audio=0.0,freq=500, drive=1,balance=0.5,
 	[0.00001,5.0,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -193,7 +193,7 @@ Instr("bassEfx.deucePumpHalfFlatSlew",{ arg audio=0.0,freq=500, drive=1,balance=
 	# loa , hia = Instr.ar([\splits,\xover],[ audio,(freq + LFNoise1.kr(0.2,200)).max(60),lo * max,hi * max]);
 	
 	Slew.ar(
-		Mix.ar([
+		Mix.new([
 			 loa,
 			 hia
 		]).softclip
@@ -207,7 +207,7 @@ Instr("bassEfx.deucePumpHalfFlatSlew",{ arg audio=0.0,freq=500, drive=1,balance=
 	[19000,100,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -219,7 +219,7 @@ Instr("bassEfx.rlpf",{  arg audio=0.0,ffreq=6000;
 	[50,16000]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -228,7 +228,7 @@ Instr("bassEfx.rlpf",{  arg audio=0.0,ffreq=6000;
 Instr("bassEfx.threePump",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,hi=0.8,sweepfreq=1000;
 	
 	freq = max(freq,halfwidth + 100);
-	Mix.ar([
+	Mix.new([
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
 		 HardShaper.ar( BPF.ar(audio,sweepfreq, 0.5 ) ,mid * 6.0),
 		 HardShaper.ar( HPF.ar(audio,freq + halfwidth),hi * 6.0)
@@ -245,7 +245,7 @@ Instr("bassEfx.threePump",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.
 
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -254,7 +254,7 @@ Instr("bassEfx.threePump",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.
 Instr("bassEfx.threePumpResonz",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,hi=0.8,sweepfreq=1000;
 	
 	freq = max(freq,halfwidth + 100);
-	Mix.ar([
+	Mix.new([
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
 		 Resonz.ar(audio,sweepfreq, halfwidth * 2 / sweepfreq ,mid) ,
 		 HardShaper.ar( HPF.ar(audio,freq + halfwidth),hi * 6.0)
@@ -271,7 +271,7 @@ Instr("bassEfx.threePumpResonz",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8
 
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -282,7 +282,7 @@ Instr("bassEfx.threePumpResonz",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8
 Instr("bassEfx.threePumpFormlet",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,hi=0.8,sweepfreq=1000,decay=0.01;
 	
 	freq = max(freq,halfwidth + 100);
-	Mix.ar([
+	Mix.new([
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
 		 Formlet.ar(audio,sweepfreq, 0.0005,decay ,mid) ,
 		 HardShaper.ar( HPF.ar(audio,freq + halfwidth),hi * 6.0)
@@ -299,7 +299,7 @@ Instr("bassEfx.threePumpFormlet",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.
 	[0.001,0.1,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -312,7 +312,7 @@ Instr("bassEfx.autoWah",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,
 	var freqmod;
 	freq = max(freq,halfwidth + 100);
 	freqmod=Amplitude.kr(Mono(audio),attack,release, bounce,sweepfreq);
-	Mix.ar([
+	Mix.new([
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
 		 Formlet.ar(audio,freqmod, 0.0005,decay ,mid) ,
 		 HardShaper.ar( HPF.ar(audio,freq + halfwidth),hi * 6.0)
@@ -331,7 +331,7 @@ Instr("bassEfx.autoWah",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,lo=0.8,
 
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -342,7 +342,7 @@ Instr("bassEfx.autoWahWobble",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,l
 	var freqmod;
 	freq = max(freq,halfwidth + 100);
 	freqmod=Amplitude.kr(Mono(audio),attack,release, bounce,freq + LFNoise1.kr(0.1,wobbleWidth));
-	Mix.ar([
+	Mix.new([
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
 		 Formlet.ar(audio,freqmod, 0.0005,decay ,mid) ,
 		 HardShaper.ar( HPF.ar(audio,freq + halfwidth),hi * 6.0)
@@ -360,22 +360,22 @@ Instr("bassEfx.autoWahWobble",{ arg audio=0.0,freq=2000, halfwidth=500,mid=0.8,l
 	[0,7000]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
 
 
 Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.8,wobbleWidth=1000,decay=0.01,bounce=1000
-			,release=0.3,feedback=0.3,buffer;
+			,release=0.3,feedback=0.3;
 
 	var freqmod,halfwidth = 1000;
 	freq = max(freq,halfwidth + 100);
 	freqmod=Amplitude.kr(Mono(audio),0.1,release, bounce,freq + LFNoise1.kr(0.1,wobbleWidth));
-	audio = NumChannels.ar(audio,buffer.numChannels);
-	Mix.ar([
+	audio = NumChannels.ar(audio,2);
+	Mix.new([
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
-		PingPongT.ar(buffer.bufnumIr,
+		PingPongT.ar(nil,
 			 Formlet.ar(audio,freqmod, 0.0005,decay ,mid) ,
 			0.375,feedback,0.05,tempo:Tempo.kr
 		),
@@ -394,7 +394,7 @@ Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.
 
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -403,7 +403,7 @@ Instr("bassEfx.autoWahWobbleDLY",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.
 
 Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,hi=0.8,
 			wobbleWidth=1000,decay=0.01,bounce=1000,
-			release=0.3,density=0.5,buffer;
+			release=0.3,density=0.5;
 
 	var freqmod,halfwidth = 1000;
 	var feedback;
@@ -415,11 +415,11 @@ Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,h
 			Dust.kr(density),
 			0.1,density.reciprocal * 3);
 	
-	audio = NumChannels.ar(audio,buffer.numChannels);
+	audio = NumChannels.ar(audio,2);
 			
-	Mix.ar([
+	Mix.new([
 		 LPF.ar(audio,freq - halfwidth,lo * 9.0).softclip,
-		PingPongT.ar(buffer.bufnumIr,
+		PingPongT.ar(nil,
 			 Formlet.ar(audio,freqmod, 0.0005,decay ,mid) ,
 			 0.375,feedback,0.05,tempo: Tempo.kr
 		),
@@ -438,7 +438,7 @@ Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,h
 
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -459,7 +459,7 @@ Instr("bassEfx.autoWahWobbleDLYdust",{ arg audio=0.0,freq=2000, mid=0.8,lo=0.8,h
 //			Dust.kr(density),
 //			0.1,density.reciprocal * 3);
 //	mids = 
-//	Mix.ar([
+//	Mix.new([
 //		 LPF.ar(audio,freq - halfwidth,lo * 9.0),
 //		PingPongT.ar(
 //			 Formlet.ar(audio,freqmod, 0.0005,decay ,mid) ,
@@ -492,7 +492,7 @@ Instr("bassEfx.aBasicChannel",{ arg audio=0.0,
 			wobbleWidth=1000,
 			decay=0.01,
 			bounce=1000
-			,feedbackDensity=0.5,tempo=1.0,buffer;
+			,feedbackDensity=0.5,tempo=1.0;
 
 	var freqmod;
 	var feedback;
@@ -510,11 +510,11 @@ Instr("bassEfx.aBasicChannel",{ arg audio=0.0,
 			Dust.kr(feedbackDensity),
 			0.1,feedbackDensity.reciprocal * 3);
 	
-	audio = NumChannels.ar(audio,buffer.numChannels);
+	audio = NumChannels.ar(audio,2);
 		
-	Mix.ar([
+	Mix.new([
 		 RLPF.ar(audio,Clip.kr(lofmod,60,9000),resmod,lo * 9.0).softclip,
-		PingPongT.ar(buffer.bufnumIr,
+		PingPongT.ar(nil,
 			 Formlet.ar(audio,freqmod, 0.005,decay ,mid) ,
 			 0.375,feedback,0.05,1, tempo: tempo
 		),
@@ -534,7 +534,7 @@ Instr("bassEfx.aBasicChannel",{ arg audio=0.0,
 	[0,7000]
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -546,7 +546,7 @@ Instr("bassEfx.aBasicChannelFlat",{ arg audio=0.0,
 			wobbleWidth=1000,
 			decay=0.01,
 			bounce=1000
-			,feedbackDensity=0.5,tempo=1.0,buffer;
+			,feedbackDensity=0.5,tempo=1.0;
 
 	var freqmod;
 	var feedback;
@@ -564,11 +564,11 @@ Instr("bassEfx.aBasicChannelFlat",{ arg audio=0.0,
 			Dust.kr(feedbackDensity),
 			0.1,feedbackDensity.reciprocal * 3);
 	
-	audio = NumChannels.ar(audio,buffer.numChannels);
+	audio = NumChannels.ar(audio,2);
 			
-	Mix.ar([
+	Mix.new([
 		 RLPF.ar(audio,Clip.kr(lofmod,60,9000),resmod,lo * 9.0),
-		PingPongT.ar(buffer.bufnumIr,
+		PingPongT.ar(nil,
 			 Formlet.ar(audio,freqmod, 0.005,decay ,mid) ,
 			 0.375,feedback,0.05,1,tempo: tempo
 		),
@@ -588,7 +588,7 @@ Instr("bassEfx.aBasicChannelFlat",{ arg audio=0.0,
 	[0,7000]
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -603,8 +603,7 @@ Instr("bassEfx.aBasicChannel2",{ arg audio=0.0,
 										wobbleWidth=1000,
 										bounce=1000,
 										feedbackDensity=0.5,
-										tempo=1.0,
-										buffer;
+										tempo=1.0;
 
 	var freqmod;
 	var feedback;
@@ -624,11 +623,11 @@ Instr("bassEfx.aBasicChannel2",{ arg audio=0.0,
 			
 	# loa , mida, hia = Instr.ar([\splits,\xover3,\lp],[ audio, Clip.kr(lofmod,60,9000),hifreq ]);
 	
-	Mix.ar([
+	Mix.new([
 		loa * lo ,
 		PingPongT.ar(
-			buffer.bufnumIr,
-			 NumChannels.ar(mida * mid,buffer.numChannels) ,
+			nil,
+			 NumChannels.ar(mida * mid,2) ,
 			 0.375,feedback,0.05,1,tempo: tempo
 		),
 		  hia * hi
@@ -646,7 +645,7 @@ Instr("bassEfx.aBasicChannel2",{ arg audio=0.0,
 	[0,7000]
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -662,8 +661,7 @@ Instr("bassEfx.aBasicChannel3",{ arg audio=0.0,
 									wobbleWidth=1000,
 									bounce=1000,
 									feedbackDensity=0.5,
-									tempo=1.0,
-									buffer;
+									tempo=1.0;
 
 	var freqmod;
 	var feedback;
@@ -688,11 +686,11 @@ Instr("bassEfx.aBasicChannel3",{ arg audio=0.0,
 
 	
 	
-	Mix.ar([
+	Mix.new([
 		loa * lo ,
 		PingPongT.ar(
-			buffer.bufnumIr,
-			 NumChannels.ar(mida * mid,buffer.numChannels) ,
+			nil,
+			 NumChannels.ar(mida * mid,2) ,
 			 0.375,feedback,0.05,1,tempo: tempo
 		),
 		  hia * hi
@@ -709,7 +707,7 @@ Instr("bassEfx.aBasicChannel3",{ arg audio=0.0,
 	[0,7000]
 	
 ],
-	\audioEffect
+	\audio
 );
 
 

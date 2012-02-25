@@ -10,7 +10,7 @@ Instr("toneknob.hiloBalance",{ arg audio=0.0,xover=200,logain=1.0,higain=1.0;
 	lo = if(logain == 1.0,{lo},{lo * logain});
 	hi = if(higain == 1.0,{hi},{hi * higain});
 	
-	Mix.ar([ lo , hi])
+	Mix.new([ lo , hi])
 
 },#[
 	\audio,
@@ -18,7 +18,7 @@ Instr("toneknob.hiloBalance",{ arg audio=0.0,xover=200,logain=1.0,higain=1.0;
 	\gain,
 	\gain
 ],
-	\audioEffect
+	\audio
 );
 
 Instr("toneknob.himidloBalance",{ arg audio=0.0,xover=200,xover2=3000,logain=1.0,midgain=1.0,higain=1.0;
@@ -35,7 +35,7 @@ Instr("toneknob.himidloBalance",{ arg audio=0.0,xover=200,xover2=3000,logain=1.0
 	mid = if(midgain == 1.0,{mid},{mid * midgain});
 	hi = if(higain == 1.0,{hi},{hi * higain});
 	
-	Mix.ar([ lo , mid, hi])
+	Mix.new([ lo , mid, hi])
 
 },#[
 	\audio,
@@ -45,7 +45,7 @@ Instr("toneknob.himidloBalance",{ arg audio=0.0,xover=200,xover2=3000,logain=1.0
 	\gain,
 	\gain
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -57,7 +57,7 @@ Instr("toneknob.bpfGain",{ arg audio=0.0,freq=200,rq8=1.0,gain=1.0;
 	chan = BPF.ar( audio, freq,rq8);
 	rest = audio - chan;
 	
-	Mix.ar([chan * gain,rest])
+	Mix.new([chan * gain,rest])
 
 },#[
 	\audio,
@@ -65,7 +65,7 @@ Instr("toneknob.bpfGain",{ arg audio=0.0,freq=200,rq8=1.0,gain=1.0;
 	nil,
 	[0,20]
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -79,7 +79,7 @@ Instr("toneknob.bpfHardShaper",{ arg audio=0.0,freq=200,rq8=1.0,drive=1.0;
 	chan = HardShaper.ar(chan,drive);
 	rest = BRF.ar( audio, freq, rq8);
 	
-	Mix.ar([chan,rest])
+	Mix.new([chan,rest])
 
 },#[
 	\audio,
@@ -87,7 +87,7 @@ Instr("toneknob.bpfHardShaper",{ arg audio=0.0,freq=200,rq8=1.0,drive=1.0;
 	[0.1,4.0],
 	\drive
 ],
-	\audioEffect
+	\audio
 );
 
 

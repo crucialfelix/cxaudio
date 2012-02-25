@@ -48,7 +48,7 @@ Instr.orc(\dynamics,[
 		var slewed;
 		
 		
-		mono = NumChannels.ar(audio,1,false); //Mix.ar(audio ?? { [0,0] });
+		mono = NumChannels.ar(audio,1,false); //Mix.new(audio ?? { [0,0] });
 		lo = BPF.ar( mono, ffreq,rq);
 		hi = BRF.ar( audio, ffreq,rq);
 		hi = HPF.ar( hi, freq2);
@@ -64,9 +64,9 @@ Instr.orc(\dynamics,[
 		hi = hi * Amplitude.kr( Slope.ar(hi, mul: 0.0002) , 0.01,0.3,mul: refresh, add: lift);	
 		hi = Compander.ar( hi, hi, 0.7,1,0.5,0.05,0.2);
 		
-		hi = Mix.ar([slewed * space,hi]);
+		hi = Mix.new([slewed * space,hi]);
 		
-		Mix.ar([[bass,bass],  hi]) 
+		Mix.new([[bass,bass],  hi]) 
 	
 	}
 ],
@@ -87,7 +87,7 @@ Instr("dynamics.dualFreq",{ arg audio,
 
 	var lo,hi,guide,bass,mono;
 	
-	mono = NumChannels.ar(audio,1,false); //Mix.ar(audio ?? { [0,0] });
+	mono = NumChannels.ar(audio,1,false); //Mix.new(audio ?? { [0,0] });
 	lo = BPF.ar( mono, ffreq,rq);
 	hi = BRF.ar( audio, ffreq,rq);
 	hi = HPF.ar( hi, freq2);
@@ -100,11 +100,11 @@ Instr("dynamics.dualFreq",{ arg audio,
 	hi = hi * Amplitude.kr( Slope.ar(hi, mul: 0.0002) , 0.01,0.3,mul: refresh, add: lift);	
 	hi = Compander.ar( hi, hi, 0.7,1,0.5,0.05,0.2);
 		
-	Mix.ar([[bass,bass],  hi]) 
+	Mix.new([[bass,bass],  hi]) 
 
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 
@@ -119,7 +119,7 @@ Instr("dynamics.smearRefresh",{ arg audio,
 
 	var lo,hi,guide,bass,mono;
 		
-	mono = NumChannels.ar(audio,1,false); //Mix.ar(audio ?? { [0,0] });
+	mono = NumChannels.ar(audio,1,false); //Mix.new(audio ?? { [0,0] });
 	lo = BPF.ar( audio, ffreq,rq);
 	
 	hi = BRF.ar( audio, ffreq,rq);
@@ -140,11 +140,11 @@ Instr("dynamics.smearRefresh",{ arg audio,
 	// compressed
 	hi = Compander.ar( hi, hi, 0.7,1,0.5,0.05,0.2);
 		
-	Mix.ar([bass,  hi]) 
+	Mix.new([bass,  hi]) 
 
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 
@@ -158,7 +158,7 @@ Instr("dynamics.loHiCompTranny",{ arg audio,
 
 	var lo,hi,guide,bass,mono;
 		
-	mono = NumChannels.ar(audio,1,false); //Mix.ar(audio ?? { [0,0] });
+	mono = NumChannels.ar(audio,1,false); //Mix.new(audio ?? { [0,0] });
 	lo = RLPF.ar( audio, ffreq,rq);
 	
 	hi = HPF.ar( audio, ffreq);
@@ -178,11 +178,11 @@ Instr("dynamics.loHiCompTranny",{ arg audio,
 	// compressed
 	hi = Compander.ar( hi, hi, 0.7,1,0.5,0.05,0.2);
 		
-	Mix.ar([bass,  hi]) 
+	Mix.new([bass,  hi]) 
 
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 
@@ -256,7 +256,7 @@ Instr([\dynamics,\level3band],{ arg audio=0.0,lo=1.0,mid=1.0,hi=1.0, 						attac
 	bands = bands.collect({ arg b,i;
 		Compander.ar(b,Mono(b).max(0.0001),0.5,0.4,1.0,attack,attack,levels.at(i))
 	});
-	Mix.ar(bands);
+	Mix.new(bands);
 },#[
 	\audio,
 	[0,1.5],
@@ -267,7 +267,7 @@ Instr([\dynamics,\level3band],{ arg audio=0.0,lo=1.0,mid=1.0,hi=1.0, 						attac
 	[6000,20000,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -281,7 +281,7 @@ Instr([\dynamics,\shape3band],{ arg audio=0.0,lo=1.0,mid=1.0,hi=1.0,attack=0.2,r
 	bands = bands.collect({ arg b,i;
 		Instr.ar([\dynamics,\shaper],[b,attack,release]) * levels.at(i)
 	});
-	Mix.ar(bands);
+	Mix.new(bands);
 },#[
 	\audio,
 	[0,1.5],
@@ -304,7 +304,7 @@ Instr([\dynamics,\deess],{ arg audio=0.0,threshold=0.5,slope=0.5,ffreq=6000,rq8=
 	Compander.ar( audio, key, threshold, 1.0 , slope,clampTime,relaxTime );
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 
@@ -328,7 +328,7 @@ Instr([\dynamics,\gatecomp],{ arg audio=0.0,
 	[0.01,1.0]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -348,7 +348,7 @@ Instr([\dynamics,\gate],{ arg audio=0.0,
 	[0.01,1.0]
 
 ],
-	\audioEffect
+	\audio
 );
 
 /*

@@ -103,9 +103,9 @@ Instr([\percOrc5,	\blips,\verbclik],{ arg trig=0.0,ffreq=8000,detune=1000,bwr = 
 		
 		t = Impulsar.ar(trig,50);
 			// sine percolation sound :
-		s = Mix.ar(Array.fill(percolators, { Resonz.ar(t, ffreq + Rand(0.0,detune), bwr )}) );
+		s = Mix.new(Array.fill(percolators, { Resonz.ar(t, ffreq + Rand(0.0,detune), bwr )}) );
 		
-		y = Mix.ar(CombL.ar(s, 0.1, LFNoise1.kr( Array.fill(combs,{Rand(0.005,0.1)}), 0.04, 0.05), decay)); 
+		y = Mix.new(CombL.ar(s, 0.1, LFNoise1.kr( Array.fill(combs,{Rand(0.005,0.1)}), 0.04, 0.05), decay)); 
 		
 		allpasses.do({ y = AllpassN.ar(y, 0.050, [Rand(0.005,0.05),Rand(0.005,0.05)], 1) });
 		
@@ -146,7 +146,7 @@ Instr([\percOrc5,	\blips,\metalplate],{ arg trig=0.0,freq=8000, ffreq=8000,feedb
 	// write to delay lines
 	DelayWr.ar(buffers, filteredDelays + excitation);	// write the mixed signal to the delay line
 	
-	Mix.ar(filteredDelays);	// mix 5 channels to one
+	Mix.new(filteredDelays);	// mix 5 channels to one
 			
 },[
 	\trig
@@ -212,7 +212,7 @@ Instr([\percOrc5,	\snare,\snapzzz],{arg trig=0.0,chaosParam=1.0,envadsr,qnty,fre
 
 	imp=(Impulsar.ar(trig) * 50).distort;
 	
-	finger=Mix.arFill(qnty, { arg i;
+	finger=Mix.fill(qnty, { arg i;
 			Resonz.ar(imp, 200 + (i*freqOffset),qnty);				
 		}).softclip;
 

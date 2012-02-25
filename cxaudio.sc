@@ -16,10 +16,12 @@ HardShaper  {
 
 // PingPong specified in beats
 PingPongT {
-	//your buffer should be the same numChannels as your inputs
-	*ar { arg  bufnum=0,  inputs, beats, feedback=0.7, wobble=0.0, rotate=1,tempo=1.0;
+
+	//your buffer should be nil or the same numChannels as your inputs
+	*ar { arg  bufnum,  inputs, beats, feedback=0.7, wobble=0.0, rotate=1,tempo=1.0;
 	
 		var delayedSignals, outputs,offset;
+		bufnum = bufnum ?? {LocalBuf( 44100, inputs.numChannels)};
 		delayedSignals = PlayBuf.ar(inputs.numChannels,bufnum,1.0,1.0,0.0,1.0);
 		
 		if(delayedSignals.numChannels > 1,{
@@ -28,7 +30,7 @@ PingPongT {
 			outputs = delayedSignals * feedback + inputs;
 		});
 		if(wobble != 0.0,{ wobble = LFNoise1.kr(0.1,wobble); });
-		offset = (tempo.reciprocal * beats + wobble) * BufSampleRate.kr(bufnum);
+		offset = (tempo.reciprocal * beats + wobble) * 44100;
 
 		// feedback to buffers		
 		RecordBuf.ar(outputs,bufnum,offset,1.0,0.0,1.0,1.0,1.0);
@@ -39,10 +41,13 @@ PingPongT {
 
 
 PingPongTP  {
-	*ar { arg input,process, maxBeats, beats,feedback,wobble,tempo=1.0,bufnum=0;
+    
+	*ar { arg input,process, maxBeats, beats,feedback,wobble,tempo=1.0,bufnum;
 	
 		var actDelayTime;
 		var output,delayedSignal;
+		
+		bufnum = bufnum ?? {LocalBuf( 44100, input.numChannels)};
 		
 		actDelayTime = 
 			if(wobble.notNil,{
@@ -107,7 +112,7 @@ SinChorus { // different if odd or even voices!
 		mul1 = add - 0.0001;
 		mul2 = mul1.neg;
 		vol = voices.reciprocal;
-		^Mix.arFill(voices,{arg i;
+		^Mix.fill(voices,{arg i;
 			DelayL.ar(input,maxDelay,[
 								SinOsc.kr(speed,2pi / voices * i ,mul1,add ),
 								SinOsc.kr(speed,2pi / voices * i ,mul2,add )
@@ -124,7 +129,7 @@ NoiseChorus {
 	*ar { arg input,voices=8,maxDelay=0.1,speed=0.5;
 		var vol;
 		vol = voices.reciprocal;
-		^Mix.arFill(voices,{arg i;
+		^Mix.fill(voices,{arg i;
 			DelayL.ar(input,maxDelay,LFNoise2.kr(speed,maxDelay / 2 - 0.0001,maxDelay / 2 , vol) )
 		})
 	}
@@ -136,7 +141,7 @@ StereoNoiseChorus {
 	*ar { arg input,voices=8,maxDelay=0.1,speed=0.5;
 		var vol;
 		vol = voices.reciprocal;
-		^Mix.arFill(voices,{arg i;
+		^Mix.fill(voices,{arg i;
 			DelayL.ar(input,maxDelay,[LFNoise2.kr(speed,maxDelay / 2 - 0.0001,maxDelay / 2 ) ,
 								LFNoise2.kr(speed,maxDelay / 2 - 0.0001,maxDelay / 2 ) ],
 								vol)
@@ -154,7 +159,7 @@ CombAChorus { // different if odd or even voices!
 		mul1 = add - 0.0001 * height;
 		mul2 = mul1.neg;
 		vol = voices.reciprocal;
-		^Mix.arFill(voices,{arg i;
+		^Mix.fill(voices,{arg i;
 			CombL.ar(input,maxDelay,[
 								SinOsc.kr(speed,2pi / voices * i ,mul1,add ),
 								SinOsc.kr(speed,2pi / voices * i ,mul2,add )
@@ -175,7 +180,7 @@ CombNChorus { // different if odd or even voices!
 		mul1 = add - 0.0001 * height;
 		mul2 = mul1.neg;
 		vol = voices.reciprocal;
-		^Mix.arFill(voices,{arg i;
+		^Mix.fill(voices,{arg i;
 			CombL.ar(input,maxDelay,[
 								SinOsc.kr(speed,2pi / voices * i ,mul1,add ),
 								SinOsc.kr(speed,2pi / voices * i ,mul2,add )
@@ -234,8 +239,9 @@ Surf {
 
 
 Reverberator3 {
-
-	// using preallocated buffers for tap
+    
+    // basic configurable reverberator 
+    
 	*ar {
 		 arg input, //stereo or mono
 		 	revBalance=0.0,// 0..1
@@ -255,10 +261,10 @@ Reverberator3 {
 		var 	tapsOut,out,tapsLevelMax,combinput,combLevelMax;
 
 		if(taps > 0,{
-			tapsLevelMax = taps.reciprocal;// divide by zero if you move this up
+			tapsLevelMax = taps.reciprocal;
 	
 			tapsOut = 
-				Mix.arFill(taps,{
+				Mix.fill(taps,{
 					var delays;
 					delays = rrand(tapsMin,tapsMax);
 					DelayN.ar(input,delays,delays,tapsLevelMax.rand)
@@ -314,6 +320,17 @@ Reverberator3 {
 	}
 	
 }
+
+
+
++ UGen {
+    // doesn't work for demand rate
+    blend { arg that, blendFrac = 0.5;
+        // blendFrac should be from zero to one
+        ^this + (blendFrac * (that - this));
+    }
+}
+
 
 
 

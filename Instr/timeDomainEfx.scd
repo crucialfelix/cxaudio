@@ -60,7 +60,7 @@ Instr([\timeDomainEfx,\CombsAllPasses],{arg audio,delay=0.1,decay=15,combs=7,
 				maxDelay=0.5,allpasses=4,allpassDecay=1;
 
 	var y;
-	y = Mix.arFill(combs,{ CombL.ar(audio, maxDelay,
+	y = Mix.fill(combs,{ CombL.ar(audio, maxDelay,
 						delay,
 						decay)
 			});
@@ -79,6 +79,8 @@ Instr([\timeDomainEfx,\CombsAllPasses],{arg audio,delay=0.1,decay=15,combs=7,
 );
 
 // something is wrong here
+// it attacks
+/*
 Instr([\timeDomainEfx,\plate],{ arg audio,feedback=0.8,maxDelay=0.3,
 				qnty=4,bicoef=0.0;
 
@@ -86,13 +88,13 @@ Instr([\timeDomainEfx,\plate],{ arg audio,feedback=0.8,maxDelay=0.3,
 
 	var  buffer,tapTimes, delayedSignals, filteredDelays, output;
 	var input;
-	buffer = BufferProxy(0.5*44100,2);
+	buffer = LocalBuf(0.5*44100,2);
 	// assign random tap times
 	tapTimes = Array.rand(qnty, 0.015, maxDelay);
 
-	delayedSignals = Mix.arFill(qnty,{ arg i;
-		PlayBuf.ar(buffer.numChannels,
-				buffer.bufnumIr,
+	delayedSignals = Mix.fill(qnty,{ arg i;
+		PlayBuf.ar(2,
+				buffer,
 				startPos: tapTimes.at(i) * 44100.0)
 	});
 
@@ -104,10 +106,10 @@ Instr([\timeDomainEfx,\plate],{ arg audio,feedback=0.8,maxDelay=0.3,
 				);
 
 	input = filteredDelays + audio;
-	input = NumChannels.ar(input,buffer.numChannels);
+	input = NumChannels.ar(input,2);
 
 	// write to delay lines
-	RecordBuf.ar(filteredDelays + audio,buffer.bufnumIr);
+	RecordBuf.ar(filteredDelays + audio,buffer);
 
 	filteredDelays
 
@@ -120,6 +122,7 @@ Instr([\timeDomainEfx,\plate],{ arg audio,feedback=0.8,maxDelay=0.3,
 ],
 	\stereoEffect
 );
+*/
 /*.test(
 	Patch({
 		Decay2.ar(Impulse.ar([0.6,0.5], 0.25), 0.01, 0.25,
@@ -212,7 +215,8 @@ Instr.orc(\timeDomainEfx,[
 
 Instr([\timeDomainEfx, \geomMultiTap],{ arg audio=0.0,qnty=4,tdelay=1.0,tdecay=0.7,adecay=0.8,buffer;
 
-	audio = NumChannels.ar(audio, buffer.numChannels);
+    buffer = buffer ?? {LocalBuf(44100,2)};
+	audio = NumChannels.ar(audio, 2);
 	MultiTap.ar((Array.geom(qnty,tdelay,tdecay).max(0.00290249)),
 				(Array.geom(qnty,1.0,adecay)),
 				audio,
@@ -232,13 +236,13 @@ Instr([\timeDomainEfx, \geomMultiTap],{ arg audio=0.0,qnty=4,tdelay=1.0,tdecay=0
 
 
 
-Instr([\timeDomainEfx,\tempoPing],{
-		arg audio, feedback,tempoFactor,bufferProxy,tempo;
-		var out;
-		audio = NumChannels.ar(audio,bufferProxy.numChannels);
+Instr([\timeDomainEfx,\tempoPing],{ arg audio, feedback,tempoFactor,buffer,tempo;
+    // buffer optional
+	var out;
+	audio = NumChannels.ar(audio,2);
 
-		out=PingPongT.ar(bufferProxy.bufnumIr,audio, 2, feedback, 0.0, 1,tempo );
-		out
+	out=PingPongT.ar(buffer !? {buffer.bufnumIr},audio, 2, feedback, 0.0, 1,tempo);
+	out
 },
 	nil,// arg names are good enough
 	\stereoEffect
@@ -248,8 +252,8 @@ Instr([\timeDomainEfx,\tempoPing],{
 
 Instr([\timeDomainEfx, \PingPongT],{ arg audio=0.0 ,maxBeats=0.5, beats=0.375,feedback=0.4,wobble=0.05,tempo,buffer;
 
-		audio = NumChannels.ar(audio,buffer.numChannels);
-		PingPongT.ar(buffer.bufnumIr,audio,beats,feedback,wobble,1,tempo)
+		audio = NumChannels.ar(audio,2);
+		PingPongT.ar(buffer !? {buffer.bufnumIr},audio,beats,feedback,wobble,1,tempo)
 },[
 	\audio,
 	StaticSpec(0.125,1.0),

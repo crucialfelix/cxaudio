@@ -274,13 +274,13 @@ Instr([\splits,\xover3,\rrbpf],{ arg audio=0.0,xover1=200,xover2=4000,rq=0.5,log
 Instr("splits.xoverBalancer",{ arg audio,xover=500,lo=1,hi=1;
 	var loa;
 	loa = LPF.ar(audio,xover);
-	Mix.ar([loa * lo, audio - loa * hi ])
+	Mix.new([loa * lo, audio - loa * hi ])
 },#[
 	\audio,
 	[100,12000,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -310,7 +310,7 @@ Instr("splits.xoverBalancer",{ arg audio,xover=500,lo=1,hi=1;
 Instr([\splits,\xover3,\xoverBalancer],{ arg audio=0.0,xover1=400,xover2=5000,lo=1,mid=1,hi=1;
 	var split;
 	split = Instr.ar([\splits,\xover3,\minuser],[audio,xover1,xover2]);
-	Mix.ar([
+	Mix.new([
 			split.at(0) * lo,
 			split.at(1) * mid,
 			split.at(2) * hi
@@ -357,7 +357,7 @@ Instr([\splits,\xover3,\resMinuser],{ arg audio=0.0,xover1=400,xover2=5000,rq1=0
 Instr([\splits,\xover3,\resMinuserBalancer],{ arg audio=0.0,xover1=400,xover2=5000,rq1=0.5,rq2=0.5,lo=1,mid=1,hi=1;
 	var split;
 	split = Instr.ar([\splits,\xover3,\resMinuser],[audio,xover1,xover2,rq1,rq2]);
-	Mix.ar([
+	Mix.new([
 			split.at(0) * lo,
 			split.at(1) * mid,
 			split.at(2) * hi
@@ -374,7 +374,7 @@ Instr([\splits,\xover3,\resMinuserBalancer],{ arg audio=0.0,xover1=400,xover2=50
 	[0.0,1.5]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -401,7 +401,7 @@ Instr([\splits,\xover3,\res4Minuser],{ arg audio=0.0,xover1=0.3,xover2=0.7,rq1=0
 Instr([\splits,\xover3,\res4MinuserBalancer],{ arg audio=0.0,xover1=0.3,xover2=0.7,rq1=0.5,rq2=0.5,lo=1,mid=1,hi=1;
 	var split;
 	split = Instr.ar([\splits,\xover3,\res4Minuser],[audio,xover1,xover2,rq1,rq2]);
-	Mix.ar([
+	Mix.new([
 			split.at(0) * lo,
 			split.at(1) * mid,
 			split.at(2) * hi
@@ -453,7 +453,7 @@ Instr([\splits,\xover3,\resMinuserBouncer],{ arg audio=0.0,xover1=400,xover2=500
 Instr([\splits,\xover3,\resMinuserBouncerBalancer],{ arg audio=0.0,xover1=400,xover2=5000,rq1=0.5,rq2=0.5,lo=1,mid=1,hi=1,bounce=500;
 	var split;
 	split = Instr.ar([\splits,\xover3,\resMinuserBouncer],[audio,xover1,xover2,rq1,rq2,bounce]);
-	Mix.ar([
+	Mix.new([
 			split.at(0) * lo,
 			split.at(1) * mid,
 			split.at(2) * hi
@@ -471,7 +471,7 @@ Instr([\splits,\xover3,\resMinuserBouncerBalancer],{ arg audio=0.0,xover1=400,xo
 	[0.1,6000,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -502,7 +502,7 @@ Instr([\splits,\fft],{ arg audio=0.0;
 //	fft =	FFT.ar(1024,0,nil,nil,nil,audio);
 //	r = fft.collect({ arg c; c.real });
 //	i = fft.collect({ arg c; c.imag }); 
-//Mix.ar([
+//Mix.new([
 //	IFFT.ar(256,0,nil,nil,nil,r.copyRange(0,255),i.copyRange(0,255)) * lo,
 //	IFFT.ar(256,0,nil,nil,nil,r.copyRange(256,511),i.copyRange(256,511)) * lomid,
 //	IFFT.ar(256,0,nil,nil,nil,r.copyRange(512,767),i.copyRange(512,767)) * himid,

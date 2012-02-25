@@ -68,7 +68,7 @@ Instr([\oscillOrc2,	\monoClav],{arg qnty=3,freq2=3000,decay=6,mod1=0.5,midinote=
 		//freqOffsets.inspect;
 		
 		
-			Mix.arFill(qnty, { arg i;	
+			Mix.fill(qnty, { arg i;	
 				delayTime = (midinote + freqOffsets.at(i)).midicps.reciprocal;
 				
 				// used as a string resonator

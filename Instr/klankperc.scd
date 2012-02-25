@@ -232,8 +232,13 @@ Instr([\klankperc,\blip,\dive,\crunch2],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffs
 
 
 
+/*
+triggable XLine
 
+range = Latch.kr( end - start,trig);
+xline = EnvGen.kr( Env([1.0,0.001],[1],'exp') ,trig,levelScale: range ,levelBias; Latch.kr(end,trig), timeScale: dur, doneAction:doneAction)
 
+*/
 
 Instr([\klankperc,\blip,\dive,\crunch3],{ arg trig=0.0,ssfreqScale=1.0,sfreqOffset=0.0,stimeScale=1.0,numHarms=2.0,freq=10,gain=1.0,decay=0.1,foldAt=0.1;
 

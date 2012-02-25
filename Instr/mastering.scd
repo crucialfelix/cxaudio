@@ -6,7 +6,7 @@ Instr("mastering.limiter",{ arg audio=0.0,drive=1.0;
 	)
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 
@@ -27,7 +27,7 @@ Instr("mastering.unslewlimiter",{ arg audio=0.0,drive=1.0,unslewv=1.5,unslewf=40
 	\gain,
 	\ffreq
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -43,7 +43,7 @@ Instr("mastering.midTrans2High",{ arg audio=0.0,xover1=400,xover2=8000, sensitiv
 	hi =	Instr.ar([\dyna,\crossDriveTrans],[hi,mid,sensitivity]);
 	
 	Limiter.ar(
-		Mix.ar([ lo * logain, mid * midgain,hi * higain ])
+		Mix.new([ lo * logain, mid * midgain,hi * higain ])
 	)
 	
 },#[
@@ -57,7 +57,7 @@ Instr("mastering.midTrans2High",{ arg audio=0.0,xover1=400,xover2=8000, sensitiv
 
 	
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -77,7 +77,7 @@ Instr("mastering.midTrans2HighMedian",{ arg audio=0.0,xover1=400,xover2=8000, se
 	hi =	Instr.ar([\dyna,\crossDriveTrans],[hi,mid,sensitivity]);
 	
 	Limiter.ar(
-		Mix.ar([ lo * logain, mid * midgain,hi * higain ])
+		Mix.new([ lo * logain, mid * midgain,hi * higain ])
 	)
 	
 },#[
@@ -90,7 +90,7 @@ Instr("mastering.midTrans2HighMedian",{ arg audio=0.0,xover1=400,xover2=8000, se
 	[0.0,2.0]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -122,13 +122,13 @@ Instr("mastering.midTrans2HighMedian",{ arg audio=0.0,xover1=400,xover2=8000, se
 //	hi = Instr.ar([\stereo,\verbSides],[hi,1.0,stereo,0.05]);
 //	// squash
 //	hi = Compander.ar(hi,hi.max(0.0001),0.4,1,0.4,0.01,0.2);
-//	//hi = Mix.ar([ PitchShift.ar( hi,0.02,2,0.3),hi]);
+//	//hi = Mix.new([ PitchShift.ar( hi,0.02,2,0.3),hi]);
 //	// and drive off mid 5k
 //	//hi =	Instr.ar([\dyna,\audioByKey],[hi,HPF.ar(mid,1000),sensitivity,attack,release]);
 //	hi = Instr.ar([\slews,\balance],[ hi,300,slewv,1.0]);
 //	
 //	Limiter.ar(
-//		 Mix.ar([ lo , mid * midgain,hi * higain ])
+//		 Mix.new([ lo , mid * midgain,hi * higain ])
 //	)
 //	
 //},#[
@@ -143,7 +143,7 @@ Instr("mastering.midTrans2HighMedian",{ arg audio=0.0,xover1=400,xover2=8000, se
 //	\release,
 //	\drive
 //],
-//	\audioEffect
+//	\audio
 //);
 
 
@@ -173,7 +173,7 @@ Instr("mastering.medianFinalizer",{ arg audio=0.0,xover1=900,xover2=7139, slewv 
 	
 	
 	Limiter.ar(
-		 Mix.ar([ lo , mid * midgain,hi * higain ])
+		 Mix.new([ lo , mid * midgain,hi * higain ])
 	)
 	
 },#[
@@ -206,7 +206,7 @@ Instr("mastering.medianFinalizer",{ arg audio=0.0,xover1=900,xover2=7139, slewv 
 
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -222,7 +222,7 @@ Instr("mastering.medianFinalizer",{ arg audio=0.0,xover1=900,xover2=7139, slewv 
 //	hi =	Instr.ar([\dyna,\crossDriveTrans],[hi,mid,sensitivity]);
 //	
 //	Limiter.ar(
-//		Mix.ar([ lo * logain, mid * midgain,hi * higain ])
+//		Mix.new([ lo * logain, mid * midgain,hi * higain ])
 //	)
 //},#[
 //	\audio,
@@ -251,7 +251,7 @@ Instr("mastering.soak",{ arg audio,slope=500,lov=1.0,midv=1.0,hiv=1.4;
 	lo = Slew.ar(lo,slope,slope,lov);
 	mid = Instr.ar([\dynamics,\compressor],[mid,0.5,0.5]);
 	
-	Limiter.ar(Mix.ar([lo ,mid,hi * hiv]))  
+	Limiter.ar(Mix.new([lo ,mid,hi * hiv]))  
 },#[
 	\audio,
 	[0.1,500,\exponential],
@@ -261,7 +261,7 @@ Instr("mastering.soak",{ arg audio,slope=500,lov=1.0,midv=1.0,hiv=1.4;
 
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -271,7 +271,7 @@ Instr("mastering.simple3Chan",{arg audio=0.0,xover1=400,xover2=9000,lov=1.0,midv
 	var lo,mid,hi;
 	#lo,mid,hi=Instr.ar([\splits,\xover3,\lp],[audio,xover1,xover2, lov,midv,hiv]);
 	
-	audio=Mix.ar([lo,mid,hi]);
+	audio=Mix.new([lo,mid,hi]);
 	
 	audio=Instr.ar([\dynamics,\compressor],[audio,threshold,slope]);
 	
@@ -286,7 +286,7 @@ Instr("mastering.simple3Chan",{arg audio=0.0,xover1=400,xover2=9000,lov=1.0,midv
 	[0.0,4.0]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -302,9 +302,9 @@ Instr("mastering.compcompunslew",{ arg audio=0.0,xover1=400,xover2=9000,lov=1.0,
 	
 	#lo,mid,hi=Instr.ar([\splits,\xover3,\lp],[audio,xover1,xover2,lov,midv]);
 	
-	lomid=Instr.ar([\dynamics,\compressor],[Mix.ar([lo,mid]),threshold,slope]);
+	lomid=Instr.ar([\dynamics,\compressor],[Mix.new([lo,mid]),threshold,slope]);
 	
-	audio = Mix.ar([lomid,hi * hiv]);
+	audio = Mix.new([lomid,hi * hiv]);
 	
 	Limiter.ar(audio * drive)
 
@@ -320,7 +320,7 @@ Instr("mastering.compcompunslew",{ arg audio=0.0,xover1=400,xover2=9000,lov=1.0,
 	\freq,
 	\gain
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -333,7 +333,7 @@ Instr("mastering.Mediansimple3Chan",{ arg audio=0.0,xover1=400,xover2=9000,lov=1
 	audio = Median.ar(3,audio);
 	#lo,mid,hi=Instr.ar([\splits,\xover3,\lp],[audio,xover1,xover2, lov,midv,hiv]);
 	
-	audio=Mix.ar([lo,mid,hi]);
+	audio=Mix.new([lo,mid,hi]);
 	
 	audio=Instr.ar([\dynamics,\compressor],[audio,threshold,slope]);
 	
@@ -348,7 +348,7 @@ Instr("mastering.Mediansimple3Chan",{ arg audio=0.0,xover1=400,xover2=9000,lov=1
 	[0.0,4.0]
 
 ],
-	\audioEffect
+	\audio
 );
 
 

@@ -17,7 +17,7 @@ Instr([\trails,\pelog],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 },#[
 	\audio,
 	[-9,14,\linear,1]
-],\audioEffect);
+],\audio);
 
 Instr([\trails,\scriabin],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 
@@ -31,7 +31,7 @@ Instr([\trails,\scriabin],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 },#[
 	\audio,
 	[-9,14,\linear,1]
-],\audioEffect);
+],\audio);
 
 
 Instr([\trails,\penta],{ arg audio=0.0,degree=1,pchDispersion=0.0;
@@ -47,7 +47,7 @@ Instr([\trails,\penta],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 	nil,
 	[-9,14,\linear,1]
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -61,7 +61,7 @@ Instr([\trails,\beatDelay],{ arg audio=0.0,beat=1,tempo=1.0;
 	\audio,
 	[0.001,1.0,\linear,0.125]
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -81,7 +81,7 @@ Instr([\trails,\feed],{ arg audio=0.0,beat=0.375,xfade=0,feedback=0.5,tempo=1.0,
 	[-1,1],
 	[0,1]
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -104,7 +104,7 @@ Instr([\trails,\pelogFeed],{ arg audio=0.0,beat=0.375,degree=2,xfade=0,
 	\feedback,
 	[0,1.5]
 ],
-	\audioEffect
+	\audio
 );
 
 	
@@ -128,7 +128,7 @@ Instr([\trails,\rlpfPing],{ arg audio=0.0,ffreq=3000,rq=0.5,beats=0.375,feedback
 	\unipolar,
 	\bipolar
 ],
-	\audioEffect
+	\audio
 );
 
 

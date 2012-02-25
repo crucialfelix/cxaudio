@@ -25,7 +25,7 @@ Instr([\stereo,\bal2],{ arg stereo=0.0,centerLevel=1.0,sidesLevel=1.5;
 	center = stereo - sides;
 	if(centerLevel != 1.0,{ center = center * centerLevel });
 	
-	Mix.ar([ center , sides * sidesLevel ])	
+	Mix.new([ center , sides * sidesLevel ])	
 
 },#[
 	\stereo,
@@ -48,7 +48,7 @@ Instr([\stereo,\bal2CompSides],{ arg stereo=0.0,centerLevel=1.0,sidesLevel=1.5,t
 	if(centerLevel != 1.0,{ center = center * centerLevel });
 
 	sides = Compander.ar(sides,sides.max(0.0001),threshold,1, slope, 0.01, 0.2);
-	Mix.ar([ center , sides * sidesLevel ])	
+	Mix.new([ center , sides * sidesLevel ])	
 
 },#[
 	\stereo,
@@ -68,7 +68,7 @@ Instr([\stereo,\verbSides],{ arg stereo=0.0,centerLevel=1.0,sidesLevel=1.5,decay
 	center = stereo - sides;
 	
 	4.do({ sides = AllpassL.ar(sides, 0.05, [0.05.rand, 0.05.rand], decay) });
-	Mix.ar([ center * centerLevel, sides * sidesLevel ])	
+	Mix.new([ center * centerLevel, sides * sidesLevel ])	
 
 },#[
 	\stereo,
@@ -91,7 +91,7 @@ Instr([\stereo,\hardSides],{ arg stereo=0.0,centerLevel=1.0,sidesLevel=1.5,drive
 	//4.do({ sides = AllpassL.ar(sides, 0.01, [0.01.rand, 0.01.rand], 0.05) });
 	sides = 	Instr.ar([\filters,\hardShaper],[sides,drive]);
 	
-	Mix.ar([ center * centerLevel, sides * sidesLevel ])	
+	Mix.new([ center * centerLevel, sides * sidesLevel ])	
 
 },#[
 	\stereo,

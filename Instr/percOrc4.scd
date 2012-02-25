@@ -36,7 +36,7 @@ Instr([\percOrc4,	\partchDiamond],{ arg trig=0.0,  qnty=4, decay=1,rq=0.4,ffreq=
 		y = Resonz.ar(y, ffreq, rq);
 		y = Integrator.ar(y, 0.99);
 		
-		y = Mix.arFill(qnty, {
+		y = Mix.fill(qnty, {
 			CombL.ar(
 				y, 
 				0.1, 
@@ -59,7 +59,7 @@ Instr([\percOrc4,	\monoClav],{arg trig=0.0,qnty=3,freqOffset=3000,decay=6,myDetu
 	
 			
 		freqOffsets=Interval(myDetune.neg, myDetune, myDetune * 2 / qnty);
-		Mix.ar(Array.fill(qnty, { arg i;	
+		Mix.new(Array.fill(qnty, { arg i;	
 				delayTime = 1 / (midinote.value + freqOffsets.at(i)).midicps;
 				hammer = LFNoise2.ar(freqOffset.abs*3, hammerEnv); // 3000 Hz was chosen by ear..
 				CombL.ar(hammer,		// used as a string resonator
@@ -79,7 +79,7 @@ Instr([\percOrc4,	\monoClav],{arg trig=0.0,qnty=3,freqOffset=3000,decay=6,myDetu
 Instr([\percOrc4,	\clong],{ arg trig=0.0, qnty=10,freqOffset=500;
 	var imp;
 	imp=(Impulsar.ar(trig) * 50).distort;
-	Mix.arFill(qnty, { arg i;									//bwr
+	Mix.fill(qnty, { arg i;									//bwr
 			Resonz.ar(imp, 200 + (i*freqOffset.rand.abs*2),qnty.reciprocal);				
 		}).softclip;
 },[
@@ -90,7 +90,7 @@ Instr([\percOrc4,	\clong],{ arg trig=0.0, qnty=10,freqOffset=500;
 Instr([\percOrc4,	\clongkik],{ arg trig=0.0, qnty=10,freqOffset=500,freq=130,decay=0.2;
 	var imp,stick;
 	imp=(Impulsar.ar(trig) * 50).distort;
-	stick=Mix.arFill(qnty, { arg i;									//bwr
+	stick=Mix.fill(qnty, { arg i;									//bwr
 			Resonz.ar(imp, 200 + (i*freqOffset.rand.abs*2),qnty.reciprocal);				
 		}).softclip;
 	
@@ -108,7 +108,7 @@ Instr([\percOrc4,	\clongkik],{ arg trig=0.0, qnty=10,freqOffset=500,freq=130,dec
 Instr([\percOrc4,	\clongkik3],{ arg trig=0.0, qnty=10,freqOffset=500,freq=130,decay=0.2,mix;
 	var imp,stick;
 	imp=(Impulsar.ar(trig) * 50).distort;
-	stick=Mix.arFill(qnty, { arg i;									//bwr
+	stick=Mix.fill(qnty, { arg i;									//bwr
 			Resonz.ar(imp, 200 + (i*freqOffset.rand.abs*2),qnty.reciprocal);				
 		}).softclip;
 	

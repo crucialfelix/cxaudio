@@ -80,11 +80,9 @@ Instr.orc(\oscillOrc,[
 	\brown,{ arg amp=1;
 		BrownNoise.ar(amp)
 	},
-	/*
-	\pinker,{ arg amp=1;
-		PinkerNoise.ar(amp)
+	\pink,{ arg amp=1;
+		PinkNoise.ar(amp)
 	},
-	*/
 	\ClipNoise,{ arg amp;
 		ClipNoise.ar(amp)
 	},

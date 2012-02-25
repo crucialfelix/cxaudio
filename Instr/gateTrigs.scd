@@ -15,9 +15,9 @@ Instr([\gateTrigs,\Decay2],{ arg trig,attack=0.05,decay=0.2;
 
 
 
-Instr([\gateTrigs,\extend],{ arg trig,dur=0.2;
+Instr([\gateTrigs,\extend],{ arg trig,duration=0.2;
 
-	Trig.kr(trig,dur)
+	Trig.kr(trig,duration)
 	
 },nil,\gate);
 

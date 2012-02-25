@@ -15,7 +15,7 @@ Instr("slews.slewhard",{ arg audio,drive=0.0,slewMax=12000,hardMax=7.0;
 	[0.0,50.0]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -30,7 +30,7 @@ Instr("slews.unslew",{ arg audio=0.0,freq=300;
 	\audio,
 	\ffreq
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -42,14 +42,14 @@ Instr("slews.balance",{ arg audio=0.0,freq=300,slewv=1.0,restv=1.0;
 	if(restv != 1.0,{ rest = rest * restv });
 	if(slewv != 1.0,{ slewed = slewed * slewv });
 	
-	Mix.ar([ rest,slewed])	
+	Mix.new([ rest,slewed])	
 },#[
 	\audio,
 	\freq,
 	[\drive],
 	[\drive]
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -64,7 +64,7 @@ Instr("slews.backup",{ arg audio,slope=500,threshold=0.5,boost=0.3,drive=1.0;
 	[50,10000,\exponential]
 
 
-],\audioEffect);
+],\audio);
 
 
 // aproximates
@@ -78,7 +78,7 @@ Instr("slews.backup2",{ arg audio,slope=500,invdrive=90;
 	[50,10000,\exponential],
 	\freq
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -95,7 +95,7 @@ Instr("slews.differentiate",{ arg audio=0.0,splitfreq=300,slewslope=12000,unslew
 	if(slewv != 1.0,{ slewed = slewed * slewv });
 	
 	Limiter.ar(
-		Mix.ar([ rest,slewed])	
+		Mix.new([ rest,slewed])	
 	)
 },#[
 	\audio,
@@ -107,7 +107,7 @@ Instr("slews.differentiate",{ arg audio=0.0,splitfreq=300,slewslope=12000,unslew
 	[0,2.0]
 
 ],
-	\audioEffect
+	\audio
 );
 
 

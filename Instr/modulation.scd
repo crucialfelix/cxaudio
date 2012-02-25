@@ -22,7 +22,7 @@ Instr([\modulation,\phaser],{ arg audio=0.0,depth=1.0,decay=0.5,lfo=0.5,min=440,
 	\ffreq,
 	\ffreq
 ],
-	\audioEffect
+	\audio
 );
 		
 
@@ -39,7 +39,7 @@ Instr([\modulation, \SinChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1;
 	ScalarSpec(0.001,0.1),
 	[0.01,2.0,\exponential]
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -52,7 +52,7 @@ Instr([\modulation, \NoiseChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1
 	\qnty,
 	ScalarSpec(0.001,0.1),
 	[0.01,2.0,\exponential]
-],\audioEffect);
+],\audio);
 
 
 Instr([\modulation, \CombAChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1,bidecay=0.1,height=1.0;
@@ -64,7 +64,7 @@ Instr([\modulation, \CombAChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1
 	\qnty,
 	ScalarSpec(0.001,0.1),
 	[0.01,2.0,\exponential]
-],\audioEffect);
+],\audio);
 
 
 
@@ -77,7 +77,7 @@ Instr([\modulation, \CombNChorus],{ arg audio=0.0,qnty=4,maxDelay=0.05,speed=0.1
 	\qnty,
 	ScalarSpec(0.001,0.1),
 	[0.01,2.0,\exponential]
-],\audioEffect);
+],\audio);
 
 
 

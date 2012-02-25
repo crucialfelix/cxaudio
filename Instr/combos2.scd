@@ -8,7 +8,7 @@ Instr("combos2.dustedDelayed",{
 		arg audio1=0.0, audio2=0.0,
 			onefreq=1000,	twofreq=2000,
 			wobbleWidth=1000,
-			density1=0.5,	density2=0.5,	overlap=0.3,tempo,buffer,buffer2;
+			density1=0.5,	density2=0.5,	overlap=0.3,tempo;
 
 	var wobble1,wobble2,feedback=0.8;
 	var one,two,input1,input2;
@@ -29,13 +29,13 @@ Instr("combos2.dustedDelayed",{
 	input1 = 	Clip.ar( RBPF.ar(audio1,(wobble1 + onefreq), 40,19000));
 	input2 = Clip.ar( RBPF.ar(audio2,(wobble2 + twofreq), 40,19000));
 	
-	Mix.ar([
-		PingPongT.ar(buffer.bufnumIr,
-			NumChannels.ar(input1, buffer.numChannels),
+	Mix.new([
+		PingPongT.ar(nil,
+			NumChannels.ar(input1, 2),
 			 0.375,feedback,0.03,tempo: tempo
 		),
-		PingPongT.ar(buffer2.bufnumIr,
-			NumChannels.ar(input2, buffer2.numChannels),
+		PingPongT.ar(nil,
+			NumChannels.ar(input2, 2),
 			0.25,feedback,0.03, tempo: tempo
 		)
 	])
@@ -49,7 +49,7 @@ Instr("combos2.dustedDelayed",{
 	\unipolar,
 	\unipolar,
 	\unipolar,
-	\tempo,\buffer,\buffer
+	\tempo
 	
 ],
 	\dualStereoEffect
@@ -83,7 +83,7 @@ Instr("combos2.xy",{
 			 HardShaper.ar( HPF.ar(audio2,freq),hi * 6.0),
 			 ab);
 
-	Mix.ar([
+	Mix.new([
 		lomix,himix
 	])
 	
@@ -124,7 +124,7 @@ Instr("combos2.xyFlat",{
 			  audio2 - lo2 ,
 			 ab);
 
-	Mix.ar([
+	Mix.new([
 		lomix * lo,himix * hi
 	])
 
@@ -164,7 +164,7 @@ Instr("combos2.xyFlatRev",{		arg audio1=0.0,		audio2=0.0,
 			hi1 ,lo2,
 			 hilo);
 
-	Mix.ar([
+	Mix.new([
 		lomix,himix
 	])
 
@@ -210,7 +210,7 @@ Instr("combos2.xy4Flat",{
 	lo1=LPF.ar(audio1,freq ); 
 	lo2=LPF.ar(audio2,freq ); 
 			
-	Mix.ar([
+	Mix.new([
 		lo1 * lo1vol, 
 		lo2 * lo2vol,
 		 audio1 - lo1 *  hi1vol ,
@@ -258,7 +258,7 @@ Instr("combos2.xy4Slew",{
 	lo1=Slew.ar(audio1,freq,freq ); 
 	lo2=Slew.ar(audio2,freq,freq ); 
 			
-	Mix.ar([
+	Mix.new([
 		lo1 * lo1vol, 
 		lo2 * lo2vol,
 		 audio1 - lo1 *  hi1vol ,
@@ -305,7 +305,7 @@ Instr("combos2.xy4rev",{
 	lo1=LPF.ar(audio1,freq ); 
 	lo2=LPF.ar(audio2,freq ); 
 			
-	Mix.ar([
+	Mix.new([
 		lo1 * lo1vol, 
 		lo2 * lo2vol,
 		 audio1 - lo1 *  hi1vol ,
@@ -352,7 +352,7 @@ Instr("combos2.xy4SlewRev",{
 	lo2=Slew.ar(audio2,freq,freq ); 
 
 			
-	Mix.ar([
+	Mix.new([
 		lo1 * c,
 		lo2 * b,
 		 audio1 - lo1 *  a ,
@@ -389,7 +389,7 @@ Instr("combos2.xy4SlewRev2",{
 	hi1 = audio1 - lo1;
 	hi2 = audio2 - lo2;
 
-	Mix.ar([
+	Mix.new([
 		lo1 * y, 
 		lo2 * (1.0 - y),
 		 hi1 *  ( 1.0 - x) ,

@@ -22,7 +22,7 @@ Instr("liveeq.hiloAndMidPush",{ arg audio=0.0,hilo=0,level=1.0,midlevel=1.0,
 	
 	// mida = Instr.ar([\eq,\bpfGain],[mida,midfreq,midrq,midlevel]);
 	// let something else limit it
-	Mix.ar([
+	Mix.new([
 		 loa,
 		 mida,
 		 hia
@@ -37,7 +37,7 @@ Instr("liveeq.hiloAndMidPush",{ arg audio=0.0,hilo=0,level=1.0,midlevel=1.0,
 	[4000,10000,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -57,7 +57,7 @@ Instr("liveeq.hiloAndMidPushSlew",{ arg audio=0.0,hilo=0,level=1.0,midlevel=1.0,
 
 	# loa , mida, hia = Instr.ar([\splits,\xover3,\slew],[ audio,slope,xover2,lov,midlevel * level,hiv]);
 	
-	Mix.ar([
+	Mix.new([
 		 loa,
 		 mida,
 		 hia
@@ -72,7 +72,7 @@ Instr("liveeq.hiloAndMidPushSlew",{ arg audio=0.0,hilo=0,level=1.0,midlevel=1.0,
 	[4000,10000,\exponential]
 
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -90,7 +90,7 @@ Instr("liveeq.leakBPF",{ arg audio=0.0,coef=0.8,ffreq=1000,rq=0.5,gain=0.2;
 	\rq,
 	\gain
 ],
-	\audioEffect
+	\audio
 );
 
 
@@ -106,7 +106,7 @@ Instr("liveeq.upwardLimHPmids",{ arg audio=0.0,threshold=0.5,boost=0.3,clampTime
 			
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 // dc trap removed
@@ -121,7 +121,7 @@ Instr("liveeq.upwardLimHPmids2",{ arg audio=0.0,threshold=0.5,boost=0.3,clampTim
 			
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 // no bass trap, always a high boost
@@ -136,7 +136,7 @@ Instr("liveeq.upwardLimHPmidsHi",{ arg audio=0.0,threshold=0.5,boost=0.3,clampTi
 			
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 Instr("liveeq.LeakLimBPF",{ arg audio=0.0,coef=0.8,ffreq=1000,rq=0.5,fboost=0.2;
@@ -149,7 +149,7 @@ Instr("liveeq.LeakLimBPF",{ arg audio=0.0,coef=0.8,ffreq=1000,rq=0.5,fboost=0.2;
 	
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 //Instr([\liveeq,\LeakCompLimBPF],{ arg audio=0.0,coef=0.8,ffreq=1000,rq=0.5,fboost=0.2,threshold=0.18,slope=0.3;
@@ -193,7 +193,7 @@ Instr("liveeq.upwardLimHP8k",{ arg audio=0.0,threshold=0.5,boost=0.3,clampTime=0
 		0.999)		
 },
 	nil,
-	\audioEffect
+	\audio
 );
 
 
@@ -210,6 +210,6 @@ Instr("liveeq.upwardLimPeaking",{ arg audio=0.0,threshold=0.5,boost=0.3,clampTim
 },[
 	nil,nil,nil,nil,nil,nil,nil,nil,nil,[[0.01,6.0]]
 ],
-	\audioEffect
+	\audio
 );
 

@@ -7,7 +7,7 @@ Instr([\minimoog,\minimoog],{ arg freq=440,int1=5,int2 = -5,width1=0.1,width2=0.
 	p=Pulse.ar([ freq  * int1.midiratio, freq, freq * int2.midiratio],
 			[ width1,width2,width3],0.3);
 			
-	RLPF.ar(Mix.ar(p),freq * ffreqInterval.midiratio,rq)
+	RLPF.ar(Mix.new(p),freq * ffreqInterval.midiratio,rq)
 			
 },[
 	nil,
@@ -29,7 +29,7 @@ Instr([\minimoog,\loose],{ arg freq=440,int1=5,int2 = -5,
 	p=Pulse.ar([ freq  * int1.midiratio + f , freq, freq * int2.midiratio - f],
 			[c,d,c],0.2);
 			
-	RLPF.ar(Mix.ar(p),freq * ffreqInterval.midiratio,rq)
+	RLPF.ar(Mix.new(p),freq * ffreqInterval.midiratio,rq)
 			
 },[
 	nil,
@@ -53,7 +53,7 @@ Instr([\minimoog,\detune],{ arg freq=440,detune = -4,ffreqInterval=0,rq=0.4,freq
 	p=Pulse.ar([ freq  + f , freq + g, freq  -f],
 			[c,c.neg,c],0.2);
 					
-	RLPF.ar(Mix.ar(p),
+	RLPF.ar(Mix.new(p),
 		EnvGen.kr(env,1,freq * ffreqInterval.midiratio,0.0,freqEnvSpeed)
 		,rq)
 			
