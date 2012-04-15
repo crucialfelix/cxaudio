@@ -27,7 +27,7 @@ Instr([\surf,\rlpf] ,{ arg audio,tideFreq=0.05,waveFreq = 0.1, min=100,max=12000
 	var slew;
 	slew = Surf.kr(min,max,tideFreq,waveFreq,tideEffect);
 	RLPF.ar( audio,
-			slew,
+			slew + 10,
 			rq
 		)
 },[

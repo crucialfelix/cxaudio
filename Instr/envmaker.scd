@@ -3,20 +3,20 @@
 Instr("envmaker.fixed.triangle",{ arg dur=1.0;
 	Env.triangle(dur)
 },[
-	StaticSpec(0.05,10.0,\exp)
+	StaticSpec(0.01,10.0,\exp)
 ],\envtriangle);
 
 
 Instr("envmaker.fixed.sine",{ arg dur=1.0;
 	Env.sine(dur)
 },[
-	StaticSpec(0.05,10.0,\exp)
+	StaticSpec(0.01,10.0,\exp)
 ],\envsine);
 
 Instr("envmaker.fixed.perc",{ arg attackTime=0.01, releaseTime=1.0, curve = -4.0;
 	Env.perc(attackTime,releaseTime,1.0,curve)
 },[
-	StaticSpec(0.05,10.0,\exp),
+	StaticSpec(0.01,10.0,\exp),
 	StaticSpec(0.05,10.0,\exp),
 	StaticSpec(-20.0,20.0,\lin)
 ],\envperc);
@@ -25,7 +25,7 @@ Instr("envmaker.fixed.perc",{ arg attackTime=0.01, releaseTime=1.0, curve = -4.0
 Instr("envmaker.fixed.linen",{ arg attackTime=0.01, sustainTime=1.0,releaseTime=1.0, curve = -4.0;
 	Env.linen(attackTime,releaseTime,1.0,curve)
 },[
-	StaticSpec(0.05,10.0,\exp),
+	StaticSpec(0.01,10.0,\exp),
 	StaticSpec(0.05,10.0,\exp),
 	StaticSpec(0.05,10.0,\exp),
 	StaticSpec(-20.0,20.0,\lin)

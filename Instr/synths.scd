@@ -26,6 +26,28 @@ Instr([\synths,\Pulse],{ arg trig=1.0, freq=440,
 	StaticSpec(0,20)
 ],\audio);
 
+Instr([\synths,\PulseFix],{ arg trig=1.0, freq=440,
+			ffreqInterval=0,rq=0.4,env,qnty=4,detune=2;
+	var p,width;
+	
+	p = Splay.arFill(qnty,{ arg i;
+		Pulse.ar(freq + Rand(detune.neg,detune) )
+	});
+
+	p=RLPF.ar(p,freq * ffreqInterval.midiratio,rq);
+
+	Enveloper2.ar(p,trig,env)
+
+},[
+	nil,
+	nil,
+	ControlSpec(-48,48,\linear,1,0),
+	nil,
+	\envperc,
+	\qnty,
+	StaticSpec(0,20)
+],\audio);
+
 
 
 

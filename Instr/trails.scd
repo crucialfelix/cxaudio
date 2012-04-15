@@ -55,7 +55,7 @@ Instr([\trails,\penta],{ arg audio=0.0,degree=1,pchDispersion=0.0;
 
 // boring
 Instr([\trails,\beatDelay],{ arg audio=0.0,beat=1,tempo=1.0;
-	DelayC.ar(audio,1 / (40 / 60) , beat * tempo.reciprocal)
+	DelayC.ar(audio,1 / (40 / 60) , beat * (tempo ?? {Tempo.kr}).reciprocal)
 	
 },#[
 	\audio,
@@ -71,7 +71,7 @@ Instr([\trails,\feed],{ arg audio=0.0,beat=0.375,xfade=0,feedback=0.5,tempo=1.0,
 
 	var dly,func;
 	audio = NumChannels.ar(audio,bufferProxy.numChannels);
-	dly = 	PingPongT.ar(bufferProxy.bufnumIr, audio,beat,feedback,0.05,1, tempo);
+	dly = 	PingPongT.ar(bufferProxy.bufnumIr, audio,beat,feedback,0.05,1, (tempo ?? {Tempo.kr}));
 	
 	LinXFade2.ar(audio,dly,xfade);
 
@@ -93,7 +93,7 @@ Instr([\trails,\pelogFeed],{ arg audio=0.0,beat=0.375,degree=2,xfade=0,
 	var dly;
 	dly =  PingPongTP.ar(audio,{arg in;
 	 	Instr.ar([\trails,\pelog],[in,degree])
-	},1,beat,feedback,0.05,tempo,bufferProxy.bufnumIr);
+	},1,beat,feedback,0.05,tempo ?? {Tempo.kr},bufferProxy.bufnumIr);
 	LinXFade2.ar(audio,dly,xfade);
 
 },#[
@@ -116,7 +116,7 @@ Instr([\trails,\rlpfPing],{ arg audio=0.0,ffreq=3000,rq=0.5,beats=0.375,feedback
 			audio,
 			PingPongTP.ar(HPF.ar(audio,150),{arg in; 
 				RLPF.ar(in,ffreq,rq)},0.5,beats,
-					feedback,0.0,tempo,bufferProxy.bufnumIr),
+					feedback,0.0,tempo ?? {Tempo.kr},bufferProxy.bufnumIr),
 			xfade
 		)
 

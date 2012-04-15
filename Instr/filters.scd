@@ -134,7 +134,7 @@ Instr("filters.OneZero",{ arg audio=0.0,coef=0.5,drive=1.0;
 );
     
 Instr("filters.TwoZero",{ arg audio=0.0,ffreq,radius,drive=1.0,thru=0;
-    TwoZero.ar(audio,ffreq ,radius,drive,thru * audio)
+    TwoZero.ar(audio,ffreq ,radius,drive,thru * audio) + 0.0
 },
     nil,
     \audio
